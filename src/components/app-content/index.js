@@ -1,2 +1,2 @@
-import AppContent from './app-content';
+import AppContent from './appContent';
 export default AppContent;

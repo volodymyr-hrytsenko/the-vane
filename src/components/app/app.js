@@ -1,21 +1,17 @@
-import React from 'react';
+import React, {Component} from 'react';
 
 import AppHeader from '../app-header';
-import AppNavbar from '../app-navbar';
-import AppContent from '../app-content';
+import AppContainer from "../app-container/appContainer";
 
-import './app.css';
-
-const App = () => {
-    return(
-        <div className="app">
-            <AppHeader/>
-            <div className="main">
-                <AppNavbar/>
-                <AppContent/>
+class App extends Component {
+    render() {
+        return (
+            <div className="app">
+                <AppHeader/>
+                <AppContainer/>
             </div>
-        </div>
-    );
+        );
+    }
 }
 
-export default App;
+export default App
