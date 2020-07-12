@@ -1,0 +1,85 @@
+.landing__page {
+    height: 100vh;
+    width: 100vw;
+    background-image: url(../../pictures/background.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    overflow: hidden;
+}
+
+.scrol__wrap {
+    height: inherit;
+    overflow: scroll;
+}
+
+
+.get__part {
+    width: 100%;
+    height: calc(100vh - 50px);
+    display: flex;
+    justify-content: center;
+}
+
+.get__part>button {
+    width: 220px;
+    height: 40px;
+    margin-top: calc(100vh/4*3);
+    background: #27AE60;
+    border: none;
+    border-radius: 18px;
+}
+
+
+.services {
+    width: 100%;
+    height: 660px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #fff;
+}
+
+.services>label {
+    margin-top: 32px;
+    font-size: 24px;
+    line-height: 28px;
+    text-transform: uppercase;
+}
+
+.services>p {
+    margin-top: 11px;
+    margin-bottom: 0;
+    font-size: 12px;
+    line-height: 14px;
+}
+
+.service__item {
+    height: 400px;
+    width: 600px;
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+
+    background-image: url(../../pictures/device.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.service__item__text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.service__item>button {
+    height: 40px;
+    width: 180px;
+    background: #27AE60;
+    border: none;
+    border-radius: 18px;
+}
