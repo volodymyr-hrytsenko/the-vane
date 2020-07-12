@@ -16,6 +16,5 @@ render(
         <App/>
         {/*<LandingPage/>*/}
     </Provider>,
->>>>>>> e868225d0268a384ef525673b59d15d46746e32d
   document.getElementById('root')
 );
