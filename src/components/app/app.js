@@ -1,14 +1,12 @@
 import React, {Component} from 'react';
 
-import AppHeader from '../app-header';
-import AppContainer from "../app-container/appContainer";
+import AppHeaderMenu from "../app-header-menu";
 
 class App extends Component {
     render() {
         return (
             <div className="app">
-                <AppHeader/>
-                <AppContainer/>
+                <AppHeaderMenu/>
             </div>
         );
     }

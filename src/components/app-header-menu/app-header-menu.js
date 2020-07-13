@@ -1,16 +1,38 @@
 import React from 'react';
+import {BrowserRouter as Router, Switch, Route, Link, Redirect} from "react-router-dom";
+import LandingPage from "../landing-page";
+import AppContainer from "../app-container";
 
 import './app-header-menu.css'
+import AppHeaderLogo from "../app-header-logo";
+
 
 const AppHeaderMenu = () => {
     return(
-        <ul className="header__menu">
-            <li>Головна</li>
-            <li>Послуги</li>
-            <li>Про нас</li>
-            <li>Контакти</li>
-            <li>Вхід</li>
-        </ul>
+        <Router>
+            <div className="header__menu">
+                <Link to={'/home'}><AppHeaderLogo/></Link>
+                <div className={'links'}>
+                    <Link className={'link'} to={'/home'}>Головна</Link>
+                    <Link className={'link'} to={'/home'}>Послуги</Link>
+                    <Link className={'link'} to={'/home'}>Про нас</Link>
+                    <Link className={'link'} to={'/home'}>Контакти</Link>
+                    <Link className={'link'} to={'/user'}>Вхід</Link>
+                </div>
+            </div>
+            <Switch>
+                <Route path={'/home'}>
+                    <LandingPage />
+                </Route>
+                <Route path={'/user'}>
+                    <AppContainer />
+                </Route>
+                <Route path={''}>
+                    <Redirect to={'/home'}/>
+                </Route>
+            </Switch>
+        </Router>
+
     )
 }
 

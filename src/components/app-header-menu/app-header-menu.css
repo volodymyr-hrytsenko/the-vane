@@ -1,17 +1,20 @@
 .header__menu{
-    list-style: none;
+    width: 100%;
     display: flex;
-    padding: 0;
+    justify-content: space-between;
     margin: 0;
+    padding: 0;
 }
 
-.header__menu>li{
+.link {
     position: relative;
-    margin: 0px 15px 0px 15px;
+    margin: 0 15px;
     cursor: pointer;
+    text-decoration: none;
+    color: black;
 }
 
-.header__menu>li::after{
+.link::after{
     content: "";
     position: absolute;
     top: 100%;
@@ -23,6 +26,10 @@
     transition: 0.3s;
 }
 
-.header__menu>li:hover::after{
+.link:hover::after{
     opacity: 1;
+}
+
+.links {
+    padding: 0 10px;
 }

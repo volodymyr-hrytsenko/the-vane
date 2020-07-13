@@ -34,6 +34,21 @@ class API {
         if(response.status >= 400 && response.status <= 600) throw Error(await response.json());
         return await response.json()
     }
+
+    async getWindmillsByUser() {
+        const token = sessionStorage.getItem("token")
+        if(!token) return
+        const response = await fetch(`${this.url}/windmills/user/get`, {
+            method: 'POST',
+            headers: {
+                'X-AUTH-TOKEN': token,
+                'Content-Type': 'application/json',
+            }
+        })
+
+        if(response.status >= 400 && response.status <= 600) throw Error(await response.json());
+        return await response.json()
+    }
 }
 
 const api = new API()

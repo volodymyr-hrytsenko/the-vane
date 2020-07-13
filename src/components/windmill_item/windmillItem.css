@@ -1,0 +1,17 @@
+tr {
+    margin-top: 10px;
+}
+
+td {
+    text-align: center;
+    background-color: #b0b0b0;
+    height: 42px;
+}
+
+.td-right {
+    border-radius: 7px 0 0 7px;
+}
+
+.td-left {
+    border-radius: 0 7px 7px 0;
+}

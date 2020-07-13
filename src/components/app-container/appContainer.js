@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import AppNavbar from "../app-navbar";
-import AppContent from "../app-content";
 import './appContainer.css'
 
 class AppContainer extends Component {
@@ -8,7 +7,6 @@ class AppContainer extends Component {
         return (
             <div className="main">
                 <AppNavbar/>
-                <AppContent/>
             </div>
         );
     }

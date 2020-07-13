@@ -1,3 +1,8 @@
 .logo{
     padding-left: 15px;
 }
+
+label {
+    color: black;
+    text-decoration: none;
+}

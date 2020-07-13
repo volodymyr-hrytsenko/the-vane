@@ -1,13 +1,10 @@
 import React from 'react';
 
-import AppHeader from '../app-header';
-
 import './landing-page.css';
 
 const LandingPage = () => {
     return(
         <div className="landing__page">
-            <AppHeader/>
             <div className="scrol__wrap">
                 <div className="get__part">
                     <button>Приєднатися до нас</button>
