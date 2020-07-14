@@ -1,0 +1,19 @@
+.notification {
+    color: black;
+    margin-top: 5px;
+    padding: 10px 5px;
+}
+
+.notification-title {
+    font-weight: bold;
+}
+
+.error {
+    background-color: #f25555;
+    border: 2px #f02424 solid;
+    border-radius: 5px;
+}
+
+p {
+    margin: 0;
+}

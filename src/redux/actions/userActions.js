@@ -3,6 +3,8 @@ import api from "../../service/api";
 export const LOGIN_PENDING = 'ACTION_LOGIN_PENDING';
 export const LOGIN_SUCCESS = 'ACTION_LOGIN_SUCCESS';
 export const LOGIN_ERROR = 'ACTION_LOGIN_ERROR';
+export const USER_INFO_PENDING = 'ACTION_USER_INFO_PENDING';
+export const USER_INFO_ERROR = 'ACTION_USER_INFO_ERROR';
 export const GET_USER_INFO = 'ACTION_USER_INFO'
 
 export const setLoginPending = () => {
@@ -29,6 +31,23 @@ export const setLoginError = (loginError) => {
     };
 };
 
+export const setUserInfoIsPending = () => {
+    return {
+        type: USER_INFO_PENDING,
+        payload: true
+    }
+}
+
+export const setUserInfoError= (err) => {
+    return {
+        type: USER_INFO_ERROR,
+        payload: {
+            isPending: false,
+            err: err
+        }
+    }
+}
+
 export const setUserInfo = (userData) => {
     return {
         type: GET_USER_INFO,
@@ -53,12 +72,14 @@ export const login = (user) => {
 
 export const getUserInfo = () => {
     return (dispatch) => {
+        dispatch(setUserInfoIsPending())
         api.getUserInfo()
             .then(success => {
                 dispatch(setUserInfo(success));
             })
             .catch(err => {
                 console.log(err);
+                dispatch(setUserInfoError(err))
             });
     };
 }
