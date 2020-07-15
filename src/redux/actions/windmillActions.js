@@ -1,6 +1,6 @@
 import api from "../../service/api";
 
-export const WINDMILLS_IS_PENDING = 'ACTION_LOGIN_PENDING';
+export const WINDMILLS_IS_PENDING = 'WINDMILLS_IS_PENDING';
 export const WINDMILLS_IS_SUCCESS = 'WINDMILLS_IS_SUCCESS';
 export const WINDMILLS_IS_ERROR = 'WINDMILLS_IS_ERROR';
 
@@ -15,7 +15,7 @@ export const setWindmillsSuccess = (windmills) => {
     return {
         type: WINDMILLS_IS_SUCCESS,
         payload: {
-            pending: false,
+            isPending: false,
             windmills: windmills
         }
     };

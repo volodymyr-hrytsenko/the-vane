@@ -15,11 +15,6 @@ class AppNavbar extends Component {
         super(props);
     }
 
-    componentDidMount() {
-        sessionStorage.setItem('token', 'ac1d73db-6455-4b8b-8c8f-fa5346e4739b')
-        this.props.getUserInfo()
-    }
-
     render() {
         let {path, url} = this.props.match
         const list = [
@@ -32,8 +27,8 @@ class AppNavbar extends Component {
         const navbarItem = list.map(item => {
             const {id, path, ...listProps} = item
             return(
-                <li key={id}>
-                    <Link to={`${url}/${path}`}>
+                <li className={'nav-item'} key={id}>
+                    <Link className={'nav-item-link'} to={`${url}/${path}`}>
                         <AppNavbarItem {...listProps}/>
                     </Link>
                 </li>
@@ -48,7 +43,7 @@ class AppNavbar extends Component {
                 <Switch>
                     <Route path={`${path}/profile`}>
                         <AppContent>
-                            <AppContentProfile account={this.props.user.account}/>
+                            <AppContentProfile/>
                         </AppContent>
                     </Route>
                     <Route path={`${path}/devices`}>
@@ -65,18 +60,6 @@ class AppNavbar extends Component {
     }
 }
 
-const mapStateToProps = (state) => {
-    return {
-        isPending: state.userReducer.isPending,
-        user: state.userReducer.user
-    }
-}
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        getUserInfo: bindActionCreators(getUserInfo, dispatch)
-    }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(withRouter(AppNavbar));
+export default withRouter(AppNavbar);
 

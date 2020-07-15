@@ -2,7 +2,8 @@ import {WINDMILLS_IS_ERROR, WINDMILLS_IS_PENDING, WINDMILLS_IS_SUCCESS} from "..
 
 const initialState = {
     windmillsIsPending: false,
-    windmills: []
+    windmills: [],
+    windmillsError: null
 };
 
 export const windmillsReducer = (state=initialState, action) => {
@@ -10,17 +11,19 @@ export const windmillsReducer = (state=initialState, action) => {
         case WINDMILLS_IS_PENDING:
             return {
                 ...state,
-                windmillsIsPending: action.payload
+                windmillsIsPending: action.payload,
+                windmillsError: null
             }
         case WINDMILLS_IS_ERROR:
             return {
                 ...state,
-                windmillsIsPending: action.payload
+                windmillsIsPending: action.payload.isPending,
+                windmillsError: action.payload.err
             }
         case WINDMILLS_IS_SUCCESS:
             return {
                 ...state,
-                windmillsIsPending: action.payload.pending,
+                windmillsIsPending: action.payload.isPending,
                 windmills: action.payload.windmills
             }
         default:

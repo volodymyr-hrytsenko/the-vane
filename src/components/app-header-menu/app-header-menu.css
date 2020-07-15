@@ -8,10 +8,13 @@
 
 .link {
     position: relative;
-    margin: 0 15px;
     cursor: pointer;
     text-decoration: none;
     color: black;
+}
+
+.m15 {
+    margin: 0 15px;
 }
 
 .link::after{

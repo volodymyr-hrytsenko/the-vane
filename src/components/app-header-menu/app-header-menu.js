@@ -2,10 +2,9 @@ import React from 'react';
 import {BrowserRouter as Router, Switch, Route, Link, Redirect} from "react-router-dom";
 import LandingPage from "../landing-page";
 import AppContainer from "../app-container";
-
-import './app-header-menu.css'
 import AppHeaderLogo from "../app-header-logo";
 
+import './app-header-menu.css'
 
 const AppHeaderMenu = () => {
     return(
@@ -13,11 +12,11 @@ const AppHeaderMenu = () => {
             <div className="header__menu">
                 <Link to={'/home'}><AppHeaderLogo/></Link>
                 <div className={'links'}>
-                    <Link className={'link'} to={'/home'}>Головна</Link>
-                    <Link className={'link'} to={'/home'}>Послуги</Link>
-                    <Link className={'link'} to={'/home'}>Про нас</Link>
-                    <Link className={'link'} to={'/home'}>Контакти</Link>
-                    <Link className={'link'} to={'/user'}>Вхід</Link>
+                    <Link className={'link m15'} to={'/home'}>Головна</Link>
+                    <Link className={'link m15'} to={'/home'}>Послуги</Link>
+                    <Link className={'link m15'} to={'/home'}>Про нас</Link>
+                    <Link className={'link m15'} to={'/home'}>Контакти</Link>
+                    <Link className={'link m15'} to={'/user'}>Вхід</Link>
                 </div>
             </div>
             <Switch>

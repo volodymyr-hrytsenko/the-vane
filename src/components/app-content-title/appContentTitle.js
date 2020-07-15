@@ -1,14 +1,22 @@
 import React, {Component} from 'react';
-import { connect } from "react-redux";
 import './appContentTitle.css'
+import UserTitle from "./parts/userTitle/userTitle";
+import WindmillTitle from "./parts/windmillTitle";
+import {connect} from "react-redux";
 
 class AppContentTitle extends Component {
+    defineContent() {
+        if(this.props.type === 'profile') {
+            return (<UserTitle/>)
+        } else {
+            return (<WindmillTitle/>)
+        }
+    }
+
     render() {
-        const {user, windmills} = this.props
         return (
             <div className={'content-title'}>
-                <span>{ `${user.name} ${user.surname}` }</span>
-                <span>{ `${user.email}` }</span>
+                {this.defineContent()}
             </div>
         );
     }
@@ -16,8 +24,7 @@ class AppContentTitle extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        user: state.userReducer.user,
-        windmills: state.windmillsReducer.windmills
+        type: state.titleReducer.titleType
     }
 }
 

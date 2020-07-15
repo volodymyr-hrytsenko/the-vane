@@ -2,12 +2,16 @@ import {
     LOGIN_ERROR,
     LOGIN_PENDING,
     LOGIN_SUCCESS,
-    GET_USER_INFO
+    GET_USER_INFO,
+    USER_INFO_PENDING,
+    USER_INFO_ERROR
 } from "../actions/userActions";
 
 const initialState = {
     loginPending: false,
-    user: {}
+    userInfoPending: false,
+    user: {},
+    userError: null
 };
 
 export const userReducer = (state=initialState, action) => {
@@ -20,7 +24,7 @@ export const userReducer = (state=initialState, action) => {
         case LOGIN_ERROR:
             return {
                 ...state,
-                loginPending: action.payload
+                loginPending: action.payload.isPending,
             }
         case LOGIN_SUCCESS:
             return {
@@ -31,6 +35,18 @@ export const userReducer = (state=initialState, action) => {
             return {
                 ...state,
                 user: action.payload
+            }
+        case USER_INFO_PENDING:
+            return {
+                ...state,
+                userInfoPending: action.payload,
+                userError: null
+            }
+        case USER_INFO_ERROR:
+            return {
+                ...state,
+                userInfoPending: action.payload.isPending,
+                userError: action.payload.err
             }
         default:
             return state
