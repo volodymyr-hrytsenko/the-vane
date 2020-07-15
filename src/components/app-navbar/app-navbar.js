@@ -23,7 +23,7 @@ class AppNavbar extends Component {
     render() {
         let {path, url} = this.props.match
         const list = [
-            {id: 'lkja', ico: 'fa fa-user-circle', label: 'Ваш профіль', path: 'profile'},
+            {id: 'lkja', ico: 'fa fa-user-circle', label: 'Головна', path: 'profile'},
             {id: 'ldfa', ico: 'fa fa-microchip', label: 'Ваші пристрої', path: 'devices'},
             {id: 'ljha', ico: 'fa fa-snowflake-o', label: 'Ваші вітрогенератори', path: 'windmills'},
             {id: 'sgsr', ico: 'fa fa-chevron-left', path: 'profile'}
