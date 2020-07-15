@@ -2,13 +2,11 @@ import React, {Component} from 'react';
 import {Link, Switch, Route, withRouter} from "react-router-dom";
 import AppNavbarItem from '../app-navbar-item'
 import AppContent from "../app-content/appContent";
-import {bindActionCreators} from "redux";
-import { connect } from "react-redux";
-import {getUserInfo} from "../../redux/actions/userActions";
 import AppContentProfile from "../app-content-profile/appContentProfile";
 import AppContentWindmills from "../app-content-windmills/appContentWindmills";
 
 import './app-navbar.css';
+import ProtectedRoute from "../protected-route/protected-route";
 
 class AppNavbar extends Component {
     constructor(props) {
@@ -41,19 +39,19 @@ class AppNavbar extends Component {
                     {navbarItem}
                 </ul>
                 <Switch>
-                    <Route path={`${path}/profile`}>
+                    <ProtectedRoute path={`${path}/profile`}>
                         <AppContent>
                             <AppContentProfile/>
                         </AppContent>
-                    </Route>
-                    <Route path={`${path}/devices`}>
+                    </ProtectedRoute>
+                    <ProtectedRoute path={`${path}/devices`}>
                         <p>----PLACEHOLDER----</p>
-                    </Route>
-                    <Route path={`${path}/windmills`}>
+                    </ProtectedRoute>
+                    <ProtectedRoute path={`${path}/windmills`}>
                         <AppContent>
                             <AppContentWindmills/>
                         </AppContent>
-                    </Route>
+                    </ProtectedRoute>
                 </Switch>
             </React.Fragment>
         );

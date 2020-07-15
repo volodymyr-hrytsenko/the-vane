@@ -17,7 +17,10 @@ export const setLoginPending = () => {
 export const setLoginSuccess = () => {
     return {
         type: LOGIN_SUCCESS,
-        payload: false
+        payload: {
+            isPending: false,
+            isLoggedIn: true
+        }
     };
 };
 
@@ -61,10 +64,11 @@ export const login = (user) => {
         api.login(user)
             .then(success => {
                 console.log(success)
+                sessionStorage.setItem('token', success.token)
                 dispatch(setLoginSuccess(success));
             })
             .catch(err => {
-                console.log(err);
+                console.log(err.toString());
                 dispatch(setLoginError(err));
             });
     };

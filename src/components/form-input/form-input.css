@@ -1,0 +1,20 @@
+.form-input {
+    height: 50px;
+    border: 1px solid white;
+    border-radius: 25px;
+    margin: 5px 0;
+    padding: 0 25px;
+    background-color: white;
+    color: black;
+    outline: none;
+    font-size: 14pt;
+}
+
+.err {
+    border: 1px solid red;
+}
+
+.error-text {
+    margin: 0 15px;
+    color: red;
+}

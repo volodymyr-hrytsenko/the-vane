@@ -15,7 +15,6 @@ class AppContentProfile extends Component {
 
     componentDidMount() {
         this.props.setTitleType('profile')
-        sessionStorage.setItem('token', 'ac1d73db-6455-4b8b-8c8f-fa5346e4739b')
         this.props.getUserInfo()
     }
 

@@ -10,6 +10,8 @@ import {
 const initialState = {
     loginPending: false,
     userInfoPending: false,
+    loginError: null,
+    isLoggedIn: false,
     user: {},
     userError: null
 };
@@ -25,16 +27,19 @@ export const userReducer = (state=initialState, action) => {
             return {
                 ...state,
                 loginPending: action.payload.isPending,
+                loginError: action.payload.err
             }
         case LOGIN_SUCCESS:
             return {
                 ...state,
-                loginPending: action.payload
+                loginPending: action.payload.isPending,
+                isLoggedIn: action.payload.isLoggedIn
             }
         case GET_USER_INFO:
             return {
                 ...state,
-                user: action.payload
+                user: action.payload,
+                userInfoPending: false
             }
         case USER_INFO_PENDING:
             return {

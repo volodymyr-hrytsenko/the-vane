@@ -15,3 +15,7 @@ td {
 .td-left {
     border-radius: 0 7px 7px 0;
 }
+
+.td-rounded {
+    border-radius: 7px 7px;
+}
