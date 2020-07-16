@@ -4,7 +4,7 @@ import {
     LOGIN_SUCCESS,
     GET_USER_INFO,
     USER_INFO_PENDING,
-    USER_INFO_ERROR
+    USER_INFO_ERROR, SET_LOGGED_IN
 } from "../actions/userActions";
 
 const initialState = {
@@ -12,7 +12,7 @@ const initialState = {
     userInfoPending: false,
     loginError: null,
     isLoggedIn: false,
-    user: {},
+    user: { permission: 2 },
     userError: null
 };
 
@@ -33,6 +33,11 @@ export const userReducer = (state=initialState, action) => {
             return {
                 ...state,
                 loginPending: action.payload.isPending,
+                isLoggedIn: action.payload.isLoggedIn
+            }
+        case SET_LOGGED_IN:
+            return {
+                ...state,
                 isLoggedIn: action.payload.isLoggedIn
             }
         case GET_USER_INFO:

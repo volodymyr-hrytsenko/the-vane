@@ -5,12 +5,19 @@ import { Redirect } from "react-router";
 
 class ProtectedRoute extends Component {
     render() {
+        console.log(this.props)
         return (
             <Route {...this.props}>
-                { this.props.isLoggedIn ? (this.props.children) : (<Redirect to={'/home'}/>)}
+                { this.props.condition && this.props.isLoggedIn
+                    ? (this.props.children) :
+                    (<Redirect to={`${this.props.to}`}/>)}
             </Route>
         )
     }
+}
+
+ProtectedRoute.defaultProps = {
+    condition: true
 }
 
 const mapStateToProps = (state) => {

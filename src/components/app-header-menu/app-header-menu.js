@@ -38,7 +38,10 @@ class AppHeaderMenu extends Component {
                     <Route path={'/home'}>
                         <LandingPage/>
                     </Route>
-                    <ProtectedRoute path={'/user'}>
+                    <ProtectedRoute
+                        path={'/user'}
+                        to={'/home'}
+                    >
                         <AppContainer/>
                     </ProtectedRoute>
                     <Route path={'/login'}>
@@ -58,7 +61,8 @@ class AppHeaderMenu extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        isLoggedIn: state.userReducer.isLoggedIn
+        isLoggedIn: state.userReducer.isLoggedIn,
+        user: state.userReducer.user
     }
 }
 

@@ -6,6 +6,7 @@ export const LOGIN_ERROR = 'ACTION_LOGIN_ERROR';
 export const USER_INFO_PENDING = 'ACTION_USER_INFO_PENDING';
 export const USER_INFO_ERROR = 'ACTION_USER_INFO_ERROR';
 export const GET_USER_INFO = 'ACTION_USER_INFO'
+export const SET_LOGGED_IN = 'ACTION_SET_LOGGED_IN'
 
 export const setLoginPending = () => {
     return {
@@ -23,6 +24,15 @@ export const setLoginSuccess = () => {
         }
     };
 };
+
+export const setLoggedIn = () => {
+    return {
+        type: SET_LOGGED_IN,
+        payload: {
+            isLoggedIn: true
+        }
+    }
+}
 
 export const setLoginError = (loginError) => {
     return {

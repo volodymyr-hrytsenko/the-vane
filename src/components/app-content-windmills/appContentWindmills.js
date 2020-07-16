@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {bindActionCreators} from "redux";
 import {connect} from "react-redux";
-import {getWindmillsByUser} from "../../redux/actions/windmillActions";
+import {getAllWindmills, getWindmillsByUser} from "../../redux/actions/windmillActions";
 import WindmillItem from "../windmill_item/windmillItem";
 import {CircleLoader} from "react-spinners";
 import './appContentWindmills.css'
@@ -11,33 +11,45 @@ import {setTitleType} from "../../redux/actions/titleActions";
 class AppContentWindmills extends Component {
     componentDidMount() {
         this.props.setTitleType('windmill')
-        this.props.getWindmillsByUser()
+        if(this.props.mode === "add") {
+            this.props.getAllWindmills()
+        } else {
+            this.props.getWindmillsByUser()
+        }
+
     }
 
     render() {
         let comp;
-        console.log(this.props.err)
+        let curWindmills = this.props.mode === "add" ? this.props.allWindmills : this.props.windmills
+        let err = this.props.mode === "add" ? this.props.allWindmillsError : this.props.error
         if(this.props.windmillsIsPending) {
             comp = <CircleLoader/>
-        } else if(this.props.error) {
-            comp = <Notification type={'error'}>{this.props.error.message}</Notification>
+        } else if(err) {
+            comp = <Notification type={'error'}>{err.message}</Notification>
         } else {
             comp =(<table className={'windmills-list'}>
                 <thead>
                 <tr>
+                    { this.props.mode === 'add' && <th></th>}
                     <th>Назва</th>
                     <th>Кількість лез</th>
                     <th>Довжина лез</th>
                     <th>Початкова швидкість</th>
                     <th>Номінальна швидкість</th>
                     <th>Номінальна напруга</th>
+                    { this.props.mode === 'view' && <th></th>}
                 </tr>
                 </thead>
 
                 <tbody>
-                {this.props.windmills.map((windmill, ind) => {
+                {curWindmills.map((windmill, ind) => {
                     return (
-                        <WindmillItem key={ind} windmill={windmill}/>
+                        <WindmillItem
+                            key={ind}
+                            mode={this.props.mode}
+                            windmill={windmill}
+                        />
                     )
                 })}
                 </tbody>
@@ -51,13 +63,16 @@ const mapStateToProps = (state) => {
     return {
         windmillsIsPending: state.windmillsReducer.windmillsIsPending,
         windmills: state.windmillsReducer.windmills,
-        error: state.windmillsReducer.windmillsError
+        allWindmills: state.windmillsReducer.allWindmills,
+        error: state.windmillsReducer.windmillsError,
+        allWindmillsError: state.windmillsReducer.allWindmillsError
     }
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
         getWindmillsByUser: bindActionCreators(getWindmillsByUser, dispatch),
+        getAllWindmills: bindActionCreators(getAllWindmills, dispatch),
         setTitleType: bindActionCreators(setTitleType, dispatch)
     }
 }

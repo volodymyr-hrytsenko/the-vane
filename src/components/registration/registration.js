@@ -80,7 +80,7 @@ class Registration extends Component {
                                value={this.state.password}
                                validate={[required]}
                     />
-                    <FormButton type={'submit'}>
+                    <FormButton className={'btn confirm'} type={'submit'}>
                         Submit
                     </FormButton>
                     <CircleLoader

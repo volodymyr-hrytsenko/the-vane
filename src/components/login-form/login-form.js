@@ -65,7 +65,7 @@ class LoginForm extends Component {
                                            handler={this.changeHandle}
                                            value={this.state.password}
                                 />
-                                <FormButton type={'submit'}>
+                                <FormButton className={'btn confirm'} type={'submit'}>
                                     Submit
                                 </FormButton>
                             </form>

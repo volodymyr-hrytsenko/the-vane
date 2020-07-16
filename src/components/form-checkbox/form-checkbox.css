@@ -1,0 +1,15 @@
+.form-checkbox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+    border: 1px solid black;
+    border-radius: 3px;
+    background-color: white;
+}
+
+.checked {
+    background-color: #27AE60;
+    color: white;
+}

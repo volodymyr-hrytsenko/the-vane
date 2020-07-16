@@ -4,9 +4,10 @@ import AppNavbarItem from '../app-navbar-item'
 import AppContent from "../app-content/appContent";
 import AppContentProfile from "../app-content-profile/appContentProfile";
 import AppContentWindmills from "../app-content-windmills/appContentWindmills";
+import ProtectedRoute from "../protected-route/protected-route";
+import { connect } from "react-redux";
 
 import './app-navbar.css';
-import ProtectedRoute from "../protected-route/protected-route";
 
 class AppNavbar extends Component {
     constructor(props) {
@@ -14,6 +15,7 @@ class AppNavbar extends Component {
     }
 
     render() {
+        let { user } = this.props
         let {path, url} = this.props.match
         const list = [
             {id: 'lkja', ico: 'fa fa-user-circle', label: 'Ваш профіль', path: 'profile'},
@@ -39,17 +41,28 @@ class AppNavbar extends Component {
                     {navbarItem}
                 </ul>
                 <Switch>
-                    <ProtectedRoute path={`${path}/profile`}>
+                    <ProtectedRoute
+                        path={`${path}/profile`}
+                        to={'/home'}
+                    >
                         <AppContent>
                             <AppContentProfile/>
                         </AppContent>
                     </ProtectedRoute>
-                    <ProtectedRoute path={`${path}/devices`}>
+                    <ProtectedRoute
+                        condition={user.account?.permission === 3}
+                        path={`${path}/devices`}
+                        to={'/home'}
+                    >
                         <p>----PLACEHOLDER----</p>
                     </ProtectedRoute>
-                    <ProtectedRoute path={`${path}/windmills`}>
+                    <ProtectedRoute
+                        condition={user.account?.permission === 3}
+                        path={`${path}/windmills`}
+                        to={'/home'}
+                    >
                         <AppContent>
-                            <AppContentWindmills/>
+                            <AppContentWindmills mode={'view'}/>
                         </AppContent>
                     </ProtectedRoute>
                 </Switch>
@@ -58,6 +71,11 @@ class AppNavbar extends Component {
     }
 }
 
+export const mapStateToProps = (state) => {
+    return {
+        user: state.userReducer.user
+    }
+}
 
-export default withRouter(AppNavbar);
+export default connect(mapStateToProps)(withRouter(AppNavbar));
 

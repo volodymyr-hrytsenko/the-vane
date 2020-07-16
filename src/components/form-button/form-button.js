@@ -2,10 +2,13 @@ import React, {Component} from 'react';
 import './form-button.css'
 
 class FormButton extends Component {
+    constructor(props) {
+        super(props)
+    }
     render() {
         return (
-            <button className={'form-button'}
-                    type={this.props.type}
+            <button type={this.props.type}
+                    {...this.props}
             >
                 {this.props.children}
             </button>

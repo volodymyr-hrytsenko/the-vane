@@ -19,3 +19,7 @@ td {
 .td-rounded {
     border-radius: 7px 7px;
 }
+
+.checkbox {
+    background: white;
+}
