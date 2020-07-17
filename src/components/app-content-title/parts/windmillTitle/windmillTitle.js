@@ -3,6 +3,12 @@ import './windmillTitle.css'
 import ModalWindow from "../../../modal-window/modal-window";
 import AppContentWindmills from "../../../app-content-windmills/appContentWindmills";
 import FormButton from "../../../form-button/form-button";
+import {connect} from "react-redux";
+import api from "../../../../service/api";
+import {bindActionCreators} from "redux";
+import {clearTemp} from "../../../../redux/actions/windmillTempAction";
+import {windmillTempReducer} from "../../../../redux/reducers/windmillTempReducer";
+import {addWindmills} from "../../../../redux/actions/windmillActions";
 
 class WindmillTitle extends Component {
     constructor(props) {
@@ -14,6 +20,18 @@ class WindmillTitle extends Component {
 
     clickHandler = (e) => {
         this.setState({modalIsOpened: !this.state.modalIsOpened})
+    }
+
+    submitHandler = () => {
+        const ids = this.props.temporaryWindmills.map(windmill => windmill.id)
+        api.addUserWindmill(ids)
+            .then(success => {
+                this.props.addWindmills(this.props.temporaryWindmills)
+                this.props.clearTemp()
+                this.setState({modalIsOpened: false})
+            }).catch(err => {
+                console.log(err)
+            })
     }
 
     render() {
@@ -34,6 +52,7 @@ class WindmillTitle extends Component {
                     </div>
                     <div className={'buttons-wrapper'}>
                         <FormButton className={'btn add'}
+                                    onClick={this.submitHandler}
                         >
                             Ok
                         </FormButton>
@@ -51,4 +70,17 @@ class WindmillTitle extends Component {
     }
 }
 
-export default WindmillTitle;
+const mapStateToProps = (state) => {
+    return {
+        temporaryWindmills: state.windmillTempReducer.temporaryWindmills
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        clearTemp: bindActionCreators(clearTemp, dispatch),
+        addWindmills: bindActionCreators(addWindmills, dispatch)
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(WindmillTitle);

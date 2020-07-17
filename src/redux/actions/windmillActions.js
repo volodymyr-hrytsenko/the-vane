@@ -6,6 +6,8 @@ export const WINDMILLS_IS_ERROR = 'WINDMILLS_IS_ERROR';
 export const ALL_WINDMILLS_IS_PENDING = 'ALL_WINDMILLS_IS_PENDING';
 export const ALL_WINDMILLS_IS_SUCCESS = 'ALL_WINDMILLS_IS_SUCCESS';
 export const ALL_WINDMILLS_IS_ERROR = 'ALL_WINDMILLS_IS_ERROR';
+export const DELETE_WINDMILLS = 'DELETE_WINDMILLS';
+export const ADD_WINDMILLS = 'ADD_WINDMILLS';
 
 export const setWindmillsPending = () => {
     return {
@@ -59,6 +61,21 @@ export const setAllWindmillsError = (err) => {
             err: err
         }
     };
+};
+
+export const deleteWindmill = (windmillId) => {
+    console.log(windmillId)
+    return {
+        type: DELETE_WINDMILLS,
+        payload: windmillId
+    };
+};
+
+export const addWindmills = (windmills) => {
+    return {
+        type: ADD_WINDMILLS,
+        payload: windmills
+    }
 };
 
 export const getWindmillsByUser = () => {

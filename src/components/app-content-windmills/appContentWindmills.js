@@ -16,7 +16,6 @@ class AppContentWindmills extends Component {
         } else {
             this.props.getWindmillsByUser()
         }
-
     }
 
     render() {

@@ -1,6 +1,13 @@
 import {
+    ADD_WINDMILLS,
+    ADD_WINDMILLS_IS_ERROR,
+    ADD_WINDMILLS_IS_PENDING,
     ALL_WINDMILLS_IS_ERROR,
-    ALL_WINDMILLS_IS_PENDING, ALL_WINDMILLS_IS_SUCCESS,
+    ALL_WINDMILLS_IS_PENDING,
+    ALL_WINDMILLS_IS_SUCCESS,
+    DELETE_WINDMILLS,
+    DELETE_WINDMILLS_IS_ERROR,
+    DELETE_WINDMILLS_IS_PENDING,
     WINDMILLS_IS_ERROR,
     WINDMILLS_IS_PENDING,
     WINDMILLS_IS_SUCCESS
@@ -12,7 +19,7 @@ const initialState = {
     windmillsError: null,
     allWindmillsIsPending: false,
     allWindmills: [],
-    allWindmillsError: null
+    allWindmillsError: null,
 };
 
 export const windmillsReducer = (state=initialState, action) => {
@@ -52,6 +59,16 @@ export const windmillsReducer = (state=initialState, action) => {
                 ...state,
                 allWindmillsIsPending: action.payload.isPending,
                 allWindmills: action.payload.allWindmills
+            }
+        case DELETE_WINDMILLS:
+            return {
+                ...state,
+                windmills: state.windmills.filter((windmill) => windmill.id !== action.payload)
+            }
+        case ADD_WINDMILLS:
+            return {
+                ...state,
+                windmills: [...state.windmills, ...action.payload]
             }
         default:
             return state

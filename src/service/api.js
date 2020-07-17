@@ -65,12 +65,44 @@ class API {
     async getAllWindmills() {
         const token = sessionStorage.getItem("token")
         if(!token) return
-        const response = await fetch(`${this.url}/windmills/`, {
+        const response = await fetch(`${this.url}/windmills/get`, {
             method: 'POST',
             headers: {
                 'X-AUTH-TOKEN': token,
                 'Content-Type': 'application/json',
             }
+        })
+        const parsedJson = await response.json()
+        if(response.status >= 400 && response.status <= 600) throw Error(parsedJson.message);
+        return await parsedJson
+    }
+
+    async deleteWindmill(id) {
+        const token = sessionStorage.getItem("token")
+        if(!token) return
+        const response = await fetch(`${this.url}/windmills/remove`, {
+            method: 'POST',
+            headers: {
+                'X-AUTH-TOKEN': token,
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({windmills: [id]})
+        })
+        const parsedJson = await response.json()
+        if(response.status >= 400 && response.status <= 600) throw Error(parsedJson.message);
+        return await parsedJson
+    }
+
+    async addUserWindmill(ids) {
+        const token = sessionStorage.getItem("token")
+        if(!token) return
+        const response = await fetch(`${this.url}/windmills/add`, {
+            method: 'POST',
+            headers: {
+                'X-AUTH-TOKEN': token,
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({windmills: ids})
         })
         const parsedJson = await response.json()
         if(response.status >= 400 && response.status <= 600) throw Error(parsedJson.message);
