@@ -6,6 +6,7 @@ export const LOGIN_ERROR = 'ACTION_LOGIN_ERROR';
 export const USER_INFO_PENDING = 'ACTION_USER_INFO_PENDING';
 export const USER_INFO_ERROR = 'ACTION_USER_INFO_ERROR';
 export const GET_USER_INFO = 'ACTION_USER_INFO'
+export const SET_LOGGED_IN = 'ACTION_SET_LOGGED_IN'
 
 export const setLoginPending = () => {
     return {
@@ -17,9 +18,21 @@ export const setLoginPending = () => {
 export const setLoginSuccess = () => {
     return {
         type: LOGIN_SUCCESS,
-        payload: false
+        payload: {
+            isPending: false,
+            isLoggedIn: true
+        }
     };
 };
+
+export const setLoggedIn = () => {
+    return {
+        type: SET_LOGGED_IN,
+        payload: {
+            isLoggedIn: true
+        }
+    }
+}
 
 export const setLoginError = (loginError) => {
     return {
@@ -61,10 +74,11 @@ export const login = (user) => {
         api.login(user)
             .then(success => {
                 console.log(success)
+                sessionStorage.setItem('token', success.token)
                 dispatch(setLoginSuccess(success));
             })
             .catch(err => {
-                console.log(err);
+                console.log(err.toString());
                 dispatch(setLoginError(err));
             });
     };

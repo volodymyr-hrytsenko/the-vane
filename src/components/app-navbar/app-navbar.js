@@ -2,11 +2,10 @@ import React, {Component} from 'react';
 import {Link, Switch, Route, withRouter} from "react-router-dom";
 import AppNavbarItem from '../app-navbar-item'
 import AppContent from "../app-content/appContent";
-import {bindActionCreators} from "redux";
-import { connect } from "react-redux";
-import {getUserInfo} from "../../redux/actions/userActions";
 import AppContentProfile from "../app-content-profile/appContentProfile";
 import AppContentWindmills from "../app-content-windmills/appContentWindmills";
+import ProtectedRoute from "../protected-route/protected-route";
+import { connect } from "react-redux";
 
 import './app-navbar.css';
 
@@ -16,6 +15,7 @@ class AppNavbar extends Component {
     }
 
     render() {
+        let { user } = this.props
         let {path, url} = this.props.match
         const list = [
             {id: 'lkja', ico: 'fa fa-user-circle', label: 'Головна', path: 'profile'},
@@ -41,25 +41,41 @@ class AppNavbar extends Component {
                     {navbarItem}
                 </ul>
                 <Switch>
-                    <Route path={`${path}/profile`}>
+                    <ProtectedRoute
+                        path={`${path}/profile`}
+                        to={'/home'}
+                    >
                         <AppContent>
                             <AppContentProfile/>
                         </AppContent>
-                    </Route>
-                    <Route path={`${path}/devices`}>
+                    </ProtectedRoute>
+                    <ProtectedRoute
+                        condition={user.account?.permission === 3}
+                        path={`${path}/devices`}
+                        to={'/home'}
+                    >
                         <p>----PLACEHOLDER----</p>
-                    </Route>
-                    <Route path={`${path}/windmills`}>
+                    </ProtectedRoute>
+                    <ProtectedRoute
+                        condition={user.account?.permission === 3}
+                        path={`${path}/windmills`}
+                        to={'/home'}
+                    >
                         <AppContent>
-                            <AppContentWindmills/>
+                            <AppContentWindmills mode={'view'}/>
                         </AppContent>
-                    </Route>
+                    </ProtectedRoute>
                 </Switch>
             </React.Fragment>
         );
     }
 }
 
+export const mapStateToProps = (state) => {
+    return {
+        user: state.userReducer.user
+    }
+}
 
-export default withRouter(AppNavbar);
+export default connect(mapStateToProps)(withRouter(AppNavbar));
 
