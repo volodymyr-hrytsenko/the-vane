@@ -3,13 +3,16 @@ import './appContentTitle.css'
 import UserTitle from "./parts/userTitle/userTitle";
 import WindmillTitle from "./parts/windmillTitle";
 import {connect} from "react-redux";
+import DeviceTitle from "./parts/deviceTitle/deviceTitle";
 
 class AppContentTitle extends Component {
     defineContent() {
         if(this.props.type === 'profile') {
             return (<UserTitle/>)
-        } else {
+        } else if(this.props.type === 'windmill') {
             return (<WindmillTitle/>)
+        } else {
+            return (<DeviceTitle/>)
         }
     }
 

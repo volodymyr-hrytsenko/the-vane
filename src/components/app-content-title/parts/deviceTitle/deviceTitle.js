@@ -1,19 +1,19 @@
 import React, {Component} from 'react';
-import './windmillTitle.css'
-import ModalWindow from "../../../modal-window/modal-window";
-import AppContentWindmills from "../../../app-content-windmills/appContentWindmills";
 import FormButton from "../../../form-button/form-button";
-import {connect} from "react-redux";
+import ModalWindow from "../../../modal-window/modal-window";
+import FormInput from "../../../form-input/form-input";
 import api from "../../../../service/api";
+import {connect} from "react-redux"
 import {bindActionCreators} from "redux";
-import {clearTemp} from "../../../../redux/actions/windmillTempAction";
-import {addWindmills} from "../../../../redux/actions/windmillActions";
+import {getUserDevices} from "../../../../redux/actions/deviceActions";
 
-class WindmillTitle extends Component {
+class DeviceTitle extends Component {
+
     constructor(props) {
         super(props);
         this.state = {
-            modalIsOpened: false
+            modalIsOpened: false,
+            deviceToken: ''
         }
     }
 
@@ -21,14 +21,18 @@ class WindmillTitle extends Component {
         this.setState({modalIsOpened: !this.state.modalIsOpened})
     }
 
+    changeHandle = (e) => {
+        this.setState({
+            [e.currentTarget.name]: e.currentTarget.value
+        })
+    }
+
     submitHandler = () => {
-        const ids = this.props.temporaryWindmills.map(windmill => windmill.id)
-        api.addUserWindmill(ids)
+        api.addDevice(this.state.deviceToken)
             .then(success => {
-                this.props.addWindmills(this.props.temporaryWindmills)
-                this.props.clearTemp()
-                this.setState({modalIsOpened: false})
-            }).catch(err => {
+                this.props.getUserDevices()
+            })
+            .catch(err => {
                 console.log(err)
             })
     }
@@ -36,7 +40,7 @@ class WindmillTitle extends Component {
     render() {
         return (
             <React.Fragment>
-                <span className={'title'}>Ваші вітряки</span>
+                <span className={'title'}>Ваші девайси</span>
                 <FormButton className={'btn add'}
                             onClick={this.clickHandler}
                             type={'button'}
@@ -45,10 +49,13 @@ class WindmillTitle extends Component {
                 </FormButton>
 
                 {this.state.modalIsOpened && (<ModalWindow>
-                    <h2>Додати вітряки:</h2>
-                    <div className={'windmill-wrapper'}>
-                        <AppContentWindmills mode={'add'}/>
-                    </div>
+                    <h2>Додати девайс:</h2>
+                    <FormInput type="text"
+                               name={'deviceToken'}
+                               placeholder={'Token of your device'}
+                               handler={this.changeHandle}
+                               value={this.state.deviceToken}
+                    />
                     <div className={'buttons-wrapper'}>
                         <FormButton className={'btn add'}
                                     onClick={this.submitHandler}
@@ -69,17 +76,10 @@ class WindmillTitle extends Component {
     }
 }
 
-const mapStateToProps = (state) => {
-    return {
-        temporaryWindmills: state.windmillTempReducer.temporaryWindmills
-    }
-}
-
 const mapDispatchToProps = (dispatch) => {
     return {
-        clearTemp: bindActionCreators(clearTemp, dispatch),
-        addWindmills: bindActionCreators(addWindmills, dispatch)
+        getUserDevices: bindActionCreators(getUserDevices, dispatch)
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(WindmillTitle);
+export default connect(null, mapDispatchToProps)(DeviceTitle);

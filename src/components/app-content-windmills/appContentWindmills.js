@@ -4,7 +4,7 @@ import {connect} from "react-redux";
 import {getAllWindmills, getWindmillsByUser} from "../../redux/actions/windmillActions";
 import WindmillItem from "../windmill_item/windmillItem";
 import {CircleLoader} from "react-spinners";
-import './appContentWindmills.css'
+import '../../css/table.css'
 import Notification from "../notification/notification";
 import {setTitleType} from "../../redux/actions/titleActions";
 

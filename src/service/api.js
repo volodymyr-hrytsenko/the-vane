@@ -108,6 +108,53 @@ class API {
         if(response.status >= 400 && response.status <= 600) throw Error(parsedJson.message);
         return await parsedJson
     }
+
+    async getUserDevices() {
+        const token = sessionStorage.getItem("token")
+        if(!token) return
+        const response = await fetch(`${this.url}/user/devices`, {
+            method: 'POST',
+            headers: {
+                'X-AUTH-TOKEN': token,
+                'Content-Type': 'application/json',
+            }
+        })
+        const parsedJson = await response.json()
+        if(response.status >= 400 && response.status <= 600) throw Error(parsedJson.message);
+        return await parsedJson
+    }
+
+    async deleteDevice(deviceToken) {
+        const token = sessionStorage.getItem("token")
+        if(!token) return
+        const response = await fetch(`${this.url}/user/device/remove`, {
+            method: 'POST',
+            headers: {
+                'X-AUTH-TOKEN': token,
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({token: deviceToken})
+        })
+        const parsedJson = await response.json()
+        if(response.status >= 400 && response.status <= 600) throw Error(parsedJson.message);
+        return await parsedJson
+    }
+
+    async addDevice(deviceToken) {
+        const token = sessionStorage.getItem("token")
+        if(!token) return
+        const response = await fetch(`${this.url}/user/device/add`, {
+            method: 'POST',
+            headers: {
+                'X-AUTH-TOKEN': token,
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({token: deviceToken})
+        })
+        const parsedJson = await response.json()
+        if(response.status >= 400 && response.status <= 600) throw Error(parsedJson.message);
+        return await parsedJson
+    }
 }
 
 const api = new API()
