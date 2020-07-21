@@ -8,6 +8,7 @@ import FormButton from "../form-button/form-button";
 import Notification from "../notification/notification";
 import {Redirect} from "react-router";
 import './login-form.css'
+import RedirectLink from "../redirect-link/redirect-link";
 
 class LoginForm extends Component {
 
@@ -69,6 +70,7 @@ class LoginForm extends Component {
                                     Submit
                                 </FormButton>
                             </form>
+                            <RedirectLink link={'/registration'}>До реєстрайції</RedirectLink>
                             <CircleLoader
                                 css={'left: 50%; transform: translateX(-50%);'}
                                 size={60}

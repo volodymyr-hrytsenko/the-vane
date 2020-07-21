@@ -5,8 +5,9 @@ export const LOGIN_SUCCESS = 'ACTION_LOGIN_SUCCESS';
 export const LOGIN_ERROR = 'ACTION_LOGIN_ERROR';
 export const USER_INFO_PENDING = 'ACTION_USER_INFO_PENDING';
 export const USER_INFO_ERROR = 'ACTION_USER_INFO_ERROR';
-export const GET_USER_INFO = 'ACTION_USER_INFO'
-export const SET_LOGGED_IN = 'ACTION_SET_LOGGED_IN'
+export const GET_USER_INFO = 'ACTION_USER_INFO';
+export const SET_LOGGED_IN = 'ACTION_SET_LOGGED_IN';
+export const LOG_OUT = 'ACTION_LOG_OUT';
 
 export const setLoginPending = () => {
     return {
@@ -67,6 +68,12 @@ export const setUserInfo = (userData) => {
         payload: userData
     }
 }
+
+export const logOut = () => {
+    return {
+        type: LOG_OUT,
+    };
+};
 
 export const login = (user) => {
     return (dispatch) => {

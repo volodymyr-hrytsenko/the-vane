@@ -6,6 +6,7 @@ import api from "../../../../service/api";
 import {connect} from "react-redux"
 import {bindActionCreators} from "redux";
 import {getUserDevices} from "../../../../redux/actions/deviceActions";
+import { toast } from 'react-toastify';
 
 class DeviceTitle extends Component {
 
@@ -30,10 +31,11 @@ class DeviceTitle extends Component {
     submitHandler = () => {
         api.addDevice(this.state.deviceToken)
             .then(success => {
+                toast("Девайс успішно доданий", {type: "success"})
                 this.props.getUserDevices()
             })
             .catch(err => {
-                console.log(err)
+                toast(err.message, {type: "error"})
             })
     }
 
@@ -70,7 +72,6 @@ class DeviceTitle extends Component {
                         </FormButton>
                     </div>
                 </ModalWindow>)}
-
             </React.Fragment>
         );
     }

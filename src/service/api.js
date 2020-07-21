@@ -95,6 +95,7 @@ class API {
 
     async addUserWindmill(ids) {
         const token = sessionStorage.getItem("token")
+        if(!ids.length) throw Error('no choosen windmills')
         if(!token) return
         const response = await fetch(`${this.url}/windmills/add`, {
             method: 'POST',

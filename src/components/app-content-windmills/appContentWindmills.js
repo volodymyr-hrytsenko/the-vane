@@ -22,8 +22,8 @@ class AppContentWindmills extends Component {
         let comp;
         let curWindmills = this.props.mode === "add" ? this.props.allWindmills : this.props.windmills
         let err = this.props.mode === "add" ? this.props.allWindmillsError : this.props.error
-        if(this.props.windmillsIsPending) {
-            comp = <CircleLoader/>
+        if(this.props.windmillsIsPending ) {
+            comp = <CircleLoader css={'left: 50%; transform: translateX(-50%); margin-top: 15px'} size={'120px'}/>
         } else if(err) {
             comp = <Notification type={'error'}>{err.message}</Notification>
         } else {
@@ -61,6 +61,7 @@ class AppContentWindmills extends Component {
 const mapStateToProps = (state) => {
     return {
         windmillsIsPending: state.windmillsReducer.windmillsIsPending,
+        allWindmillsIsPending: state.windmillsReducer.allWindmillsIsPending,
         windmills: state.windmillsReducer.windmills,
         allWindmills: state.windmillsReducer.allWindmills,
         error: state.windmillsReducer.windmillsError,

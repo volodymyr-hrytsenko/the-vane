@@ -8,6 +8,7 @@ import api from "../../../../service/api";
 import {bindActionCreators} from "redux";
 import {clearTemp} from "../../../../redux/actions/windmillTempAction";
 import {addWindmills} from "../../../../redux/actions/windmillActions";
+import {toast} from "react-toastify";
 
 class WindmillTitle extends Component {
     constructor(props) {
@@ -25,11 +26,12 @@ class WindmillTitle extends Component {
         const ids = this.props.temporaryWindmills.map(windmill => windmill.id)
         api.addUserWindmill(ids)
             .then(success => {
+                toast("Девайс успішно доданий", {type: "success"})
                 this.props.addWindmills(this.props.temporaryWindmills)
                 this.props.clearTemp()
                 this.setState({modalIsOpened: false})
             }).catch(err => {
-                console.log(err)
+                toast(err.message, {type: "error"})
             })
     }
 

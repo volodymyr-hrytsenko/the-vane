@@ -10,6 +10,7 @@ import FormButton from "../form-button/form-button";
 
 import './registration.css'
 import {registerClear, registerUser} from "../../redux/actions/registrationActions";
+import RedirectLink from "../redirect-link/redirect-link";
 
 class Registration extends Component {
     constructor(props) {
@@ -83,6 +84,7 @@ class Registration extends Component {
                     <FormButton className={'btn confirm'} type={'submit'}>
                         Submit
                     </FormButton>
+                    <RedirectLink link={'/login'}>До входу</RedirectLink>
                     <CircleLoader
                         css={'left: 50%; transform: translateX(-50%);'}
                         size={60}
