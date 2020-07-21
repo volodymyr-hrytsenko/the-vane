@@ -8,6 +8,7 @@ import ProtectedRoute from "../protected-route/protected-route";
 import { connect } from "react-redux";
 
 import './app-navbar.css';
+import AppContentDevice from "../app-content-device/app-content-device";
 
 class AppNavbar extends Component {
     constructor(props) {
@@ -54,7 +55,9 @@ class AppNavbar extends Component {
                         path={`${path}/devices`}
                         to={'/home'}
                     >
-                        <p>----PLACEHOLDER----</p>
+                        <AppContent>
+                            <AppContentDevice/>
+                        </AppContent>
                     </ProtectedRoute>
                     <ProtectedRoute
                         condition={user.account?.permission === 3}

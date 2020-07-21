@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
-import './windmillItem.css'
 import FormCheckbox from "../form-checkbox/form-checkbox";
 import FormButton from "../form-button/form-button";
 import api from "../../service/api";
 import {bindActionCreators} from "redux";
 import {deleteWindmill} from "../../redux/actions/windmillActions";
 import {connect} from "react-redux";
+import '../../css/table.css'
 
 class WindmillItem extends Component {
     constructor(props) {
