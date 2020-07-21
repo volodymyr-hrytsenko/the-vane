@@ -9,12 +9,22 @@ import Registration from "../registration/registration";
 import { connect } from "react-redux";
 
 import './app-header-menu.css'
+import {bindActionCreators} from "redux";
+import {logOut} from "../../redux/actions/userActions";
 
 class AppHeaderMenu extends Component {
 
+    clickHandler = (e) => {
+        sessionStorage.clear()
+        this.props.logOut()
+    }
+
     defineLinks() {
         return this.props.isLoggedIn ?
-            (<Link className={'link m15'} to={'user/profile'}>Мій профіль</Link>) :
+            (<>
+                <Link className={'link m15'} to={'user/profile'}>Мій профіль</Link>
+                <span className={'link m15'} onClick={this.clickHandler}>Вийти</span>
+            </>) :
             (<>
                 <Link className={'link m15'} to={'/login'}>Вхід</Link>
                 <Link className={'link m15'} to={'/registration'}>Реєстрація</Link>
@@ -66,4 +76,10 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps)(AppHeaderMenu);
+const mapDispatchToProps = (dispatch) => {
+    return {
+        logOut: bindActionCreators(logOut, dispatch)
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(AppHeaderMenu);

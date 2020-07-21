@@ -1,0 +1,9 @@
+.redirect-link {
+    margin: 5px 0;
+    color: #807486;
+    cursor: pointer;
+}
+
+.redirect-link:hover {
+    color: #a190a7;
+}

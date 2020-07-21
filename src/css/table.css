@@ -31,3 +31,9 @@ td {
 .checkbox {
     background: white;
 }
+
+.td-centered {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

@@ -19,7 +19,7 @@ class AppContentDevice extends Component {
         let {devices} = {...this.props}
         let comp;
         if(this.props.isPending) {
-            comp = <CircleLoader/>
+            comp = <CircleLoader css={'left: 50%; transform: translateX(-50%); margin-top: 15px'} size={'120px'}/>
         } else if(this.props.error) {
             comp = <Notification type={'error'}>{this.props.error.message}</Notification>
         } else {
