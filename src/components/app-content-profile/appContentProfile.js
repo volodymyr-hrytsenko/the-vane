@@ -15,7 +15,7 @@ class AppContentProfile extends Component {
 
     componentDidMount() {
         this.props.setTitleType('profile')
-        this.props.getUserInfo()
+        //this.props.getUserInfo()
     }
 
     render() {

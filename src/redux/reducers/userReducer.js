@@ -12,7 +12,7 @@ const initialState = {
     userInfoPending: false,
     loginError: null,
     isLoggedIn: false,
-    user: { name: ' ', surname: ' ', email: ' ', permission: 2 },
+    user: { name: ' ', surname: ' ', email: ' ', account: {permission: 2}},
     userError: null
 };
 
