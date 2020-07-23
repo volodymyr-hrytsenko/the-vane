@@ -30,29 +30,40 @@ class AppNavbar extends Component {
     render() {
         let { user } = this.props
         let { path, url } = this.props.match
-        const list = [
-            {id: 'lkja', ico: 'fa fa-user-circle', label: 'Ваш профіль', path: 'profile', state: this.state.opened},
-            {id: 'ldfa', ico: 'fa fa-microchip', label: 'Ваші пристрої', path: 'devices', state: this.state.opened},
-            {id: 'ljha', ico: 'fa fa-snowflake-o', label: 'Ваші вітрогенератори', path: 'windmills', state: this.state.opened}
-        ];
-
-        const navbarItem = list.map(item => {
-            const {id, path, ...listProps} = item
-            return(
-                <li className={'nav-item'} key={id}>
-                    <Link className={'nav-item-link'} to={`${url}/${path}`}>
-                        <AppNavbarItem {...listProps}/>
-                    </Link>
-                </li>
-            );
-        });
 
         return (
             <React.Fragment>
                 <ul ref={this.navbarRef} className="navbar" onTransitionEnd={this.transitionHandler}>
-                    {navbarItem}
                     <li className={'nav-item'}>
-                        <i className={'fa fa-chevron-left nav-icon'} onClick={this.animationHandler}/>
+                        <Link className={'nav-item-link'} to={`${url}/profile`}>
+                            <AppNavbarItem ico={'fa fa-user-circle'}
+                                           label={'Ваш профіль'}
+                                           state={this.state.opened}
+                            />
+                        </Link>
+                    </li>
+                    {user.account?.permission === 3 && (<>
+                        <li className={'nav-item'}>
+                            <Link className={'nav-item-link'} to={`${url}/devices`}>
+                                <AppNavbarItem ico={'fa fa-microchip'}
+                                               label={'Ваші пристрої'}
+                                               state={this.state.opened}
+                                />
+                            </Link>
+                        </li>
+                        <li className={'nav-item'}>
+                            <Link className={'nav-item-link'} to={`${url}/windmills`}>
+                                <AppNavbarItem ico={'fa fa-snowflake-o'}
+                                               label={'Ваші вітрогенератори'}
+                                               state={this.state.opened}
+                                />
+                            </Link>
+                        </li>
+                    </>)}
+                    <li className={'nav-item'}>
+                        <i className={`fa fa-chevron-left nav-icon ${!this.state.opened ? 'rotated' : ''}`}
+                           onClick={this.animationHandler}
+                        />
                     </li>
                 </ul>
                 <Switch>

@@ -11,7 +11,7 @@ const initialState = {
     loginPending: false,
     userInfoPending: false,
     loginError: null,
-    isLoggedIn: false,
+    isLoggedIn: true,
     user: { name: ' ', surname: ' ', email: ' ', account: {permission: 2}},
     userError: null
 };
