@@ -13,11 +13,23 @@ import AppContentDevice from "../app-content-device/app-content-device";
 class AppNavbar extends Component {
     constructor(props) {
         super(props);
+        this.state = {opened: true}
+        this.navbarRef = React.createRef()
+    }
+
+    animationHandler = (e) => {
+        if(this.state.opened) this.setState({opened: false})
+        const nav = this.navbarRef.current
+        nav.classList.toggle('closed')
+    }
+
+    transitionHandler = () => {
+        if(!this.state.opened && !this.navbarRef.current.classList.contains('closed')) this.setState({opened: true})
     }
 
     render() {
         let { user } = this.props
-        let {path, url} = this.props.match
+        let { path, url } = this.props.match
         const list = [
             {id: 'lkja', ico: 'fa fa-user-circle', label: 'Головна', path: 'profile'},
             {id: 'ldfa', ico: 'fa fa-microchip', label: 'Ваші пристрої', path: 'devices'},
@@ -38,8 +50,11 @@ class AppNavbar extends Component {
 
         return (
             <React.Fragment>
-                <ul className="navbar">
+                <ul ref={this.navbarRef} className="navbar" onTransitionEnd={this.transitionHandler}>
                     {navbarItem}
+                    <li className={'nav-item'}>
+                        <i className={'fa fa-chevron-left nav-icon'} onClick={this.animationHandler}/>
+                    </li>
                 </ul>
                 <Switch>
                     <ProtectedRoute

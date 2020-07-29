@@ -69,9 +69,12 @@ class LoginForm extends Component {
                                 <FormButton className={'btn confirm'} type={'submit'}>
                                     Submit
                                 </FormButton>
-                                <button href={'https://the-vane.herokuapp.com/auth/google'}>
+                                <a href={'https://the-vane.herokuapp.com/auth/google'}>
                                     Login with Google
-                                </button>
+                                </a>
+                                <a href={'https://the-vane.herokuapp.com/auth/google'}>
+                                    відновити пароль
+                                </a>
                             </form>
                             <RedirectLink link={'/registration'}>До реєстрайції</RedirectLink>
                             <CircleLoader
