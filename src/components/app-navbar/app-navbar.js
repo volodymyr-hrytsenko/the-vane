@@ -31,7 +31,6 @@ class AppNavbar extends Component {
     render() {
         let { user } = this.props
         let { path, url } = this.props.match
-
         return (
             <React.Fragment>
                 <ul ref={this.navbarRef} className="navbar" onTransitionEnd={this.transitionHandler}>
