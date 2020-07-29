@@ -4,6 +4,7 @@ import UserTitle from "./parts/userTitle/userTitle";
 import WindmillTitle from "./parts/windmillTitle";
 import {connect} from "react-redux";
 import DeviceTitle from "./parts/deviceTitle/deviceTitle";
+import MainTitle from "./parts/MainTitle/mainTitle";
 
 class AppContentTitle extends Component {
     defineContent() {
@@ -11,6 +12,8 @@ class AppContentTitle extends Component {
             return (<UserTitle/>)
         } else if(this.props.type === 'windmill') {
             return (<WindmillTitle/>)
+        } else if(this.props.type === 'main') {
+            return (<MainTitle/>)
         } else {
             return (<DeviceTitle/>)
         }

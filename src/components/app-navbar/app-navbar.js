@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Link, Switch, Route, withRouter} from "react-router-dom";
+import {Link, Switch, withRouter} from "react-router-dom";
 import AppNavbarItem from '../app-navbar-item'
 import AppContent from "../app-content/appContent";
 import AppContentProfile from "../app-content-profile/appContentProfile";
@@ -9,6 +9,7 @@ import { connect } from "react-redux";
 
 import './app-navbar.css';
 import AppContentDevice from "../app-content-device/app-content-device";
+import AppContentMain from "../app-content-main/appContentMain";
 
 class AppNavbar extends Component {
     constructor(props) {
@@ -34,6 +35,14 @@ class AppNavbar extends Component {
         return (
             <React.Fragment>
                 <ul ref={this.navbarRef} className="navbar" onTransitionEnd={this.transitionHandler}>
+                    <li className={'nav-item'}>
+                        <Link className={'nav-item-link'} to={`${url}/main`}>
+                            <AppNavbarItem ico={'fa fa-user-circle'}
+                                           label={'Головна'}
+                                           state={this.state.opened}
+                            />
+                        </Link>
+                    </li>
                     <li className={'nav-item'}>
                         <Link className={'nav-item-link'} to={`${url}/profile`}>
                             <AppNavbarItem ico={'fa fa-user-circle'}
@@ -91,6 +100,15 @@ class AppNavbar extends Component {
                     >
                         <AppContent>
                             <AppContentWindmills mode={'view'}/>
+                        </AppContent>
+                    </ProtectedRoute>
+                    <ProtectedRoute
+                        condition={user.account?.permission === 3}
+                        path={`${path}/main`}
+                        to={'/home'}
+                    >
+                        <AppContent>
+                            <AppContentMain/>
                         </AppContent>
                     </ProtectedRoute>
                 </Switch>

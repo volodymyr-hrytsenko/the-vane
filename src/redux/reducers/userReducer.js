@@ -11,8 +11,8 @@ const initialState = {
     loginPending: false,
     userInfoPending: false,
     loginError: null,
-    isLoggedIn: true,
-    user: { name: ' ', surname: ' ', email: ' ', account: {permission: 2}},
+    isLoggedIn: false,
+    user: {name: ' ', surname: ' ', email: ' ', account: {permission: 3}},
     userError: null
 };
 
@@ -33,7 +33,7 @@ export const userReducer = (state=initialState, action) => {
             return {
                 ...state,
                 loginPending: action.payload.isPending,
-                isLoggedIn: action.payload.isLoggedIn
+                isLoggedIn: action.payload.isLoggedIn,
             }
         case SET_LOGGED_IN:
             return {

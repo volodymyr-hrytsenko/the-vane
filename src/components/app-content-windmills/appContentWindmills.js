@@ -7,6 +7,7 @@ import {CircleLoader} from "react-spinners";
 import '../../css/table.css'
 import Notification from "../notification/notification";
 import {setTitleType} from "../../redux/actions/titleActions";
+import {setActiveWindmill} from "../../redux/actions/windmillTempAction";
 
 class AppContentWindmills extends Component {
     componentDidMount() {
@@ -16,6 +17,10 @@ class AppContentWindmills extends Component {
         } else {
             this.props.getWindmillsByUser()
         }
+    }
+
+    componentWillUnmount() {
+        this.props.setActiveWindmill(null)
     }
 
     render() {
@@ -42,10 +47,10 @@ class AppContentWindmills extends Component {
                 </thead>
 
                 <tbody>
-                {curWindmills.map((windmill, ind) => {
+                {curWindmills.map((windmill) => {
                     return (
                         <WindmillItem
-                            key={ind}
+                            key={windmill.id}
                             mode={this.props.mode}
                             windmill={windmill}
                         />
@@ -73,7 +78,8 @@ const mapDispatchToProps = (dispatch) => {
     return {
         getWindmillsByUser: bindActionCreators(getWindmillsByUser, dispatch),
         getAllWindmills: bindActionCreators(getAllWindmills, dispatch),
-        setTitleType: bindActionCreators(setTitleType, dispatch)
+        setTitleType: bindActionCreators(setTitleType, dispatch),
+        setActiveWindmill: bindActionCreators(setActiveWindmill, dispatch)
     }
 }
 

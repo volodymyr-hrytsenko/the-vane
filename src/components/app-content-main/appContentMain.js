@@ -1,43 +1,42 @@
 import React, {Component} from 'react';
 import {bindActionCreators} from "redux";
-import { connect } from "react-redux";
-import {getUserDevices} from "../../redux/actions/deviceActions";
 import {setTitleType} from "../../redux/actions/titleActions";
+import {connect} from "react-redux";
 import {CircleLoader} from "react-spinners";
 import Notification from "../notification/notification";
-import DeviceItem from "../device_item/device-item";
+import {getWindmillData} from "../../redux/actions/windmillActions";
+import MainItem from "../main-item/mainItem";
 import '../../css/table.css'
 
-class AppContentDevice extends Component {
-
+class AppContentMain extends Component {
     componentDidMount() {
-        this.props.setTitleType('devices')
-        this.props.getUserDevices()
+        this.props.setTitleType('main')
+        this.props.getWindmillData()
     }
 
     render() {
-        let {devices} = {...this.props}
+        let {windmillData} = {...this.props}
         let comp;
         if(this.props.isPending) {
             comp = <CircleLoader css={'left: 50%; transform: translateX(-50%); margin-top: 15px'} size={'120px'}/>
         } else if(this.props.error) {
             comp = <Notification type={'error'}>{this.props.error.message}</Notification>
         } else {
-            comp =(<table className={'windmills-list'}>
+            comp =(<table>
                 <thead>
                 <tr>
                     <th>Назва</th>
                     <th>Заряд аккамулятора</th>
                     <th>Дата Оновлення</th>
-                    <th></th>
+                    <th>Найбільша кількість енергії</th>
                 </tr>
                 </thead>
 
                 <tbody>
-                    {devices.map((device, ind) => {
+                    {Object.values(windmillData).map(device => {
                         return (
-                            <DeviceItem
-                                key={ind}
+                            <MainItem
+                                key={device.token}
                                 device={device}
                             />
                         )
@@ -51,17 +50,18 @@ class AppContentDevice extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        devices: state.devicesReducer.devices,
-        isPending: state.devicesReducer.isPending,
-        error: state.devicesReducer.error
+        windmillData: state.windmillsReducer.windmillData,
+        isPending: state.windmillsReducer.windmillDataIsPending,
+        error: state.windmillsReducer.windmillDataError
     }
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
         setTitleType: bindActionCreators(setTitleType, dispatch),
-        getUserDevices: bindActionCreators(getUserDevices, dispatch)
+        getWindmillData: bindActionCreators(getWindmillData, dispatch)
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(AppContentDevice);
+
+export default connect(mapStateToProps, mapDispatchToProps)(AppContentMain);

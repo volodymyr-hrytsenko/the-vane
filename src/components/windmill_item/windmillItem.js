@@ -6,6 +6,7 @@ import {bindActionCreators} from "redux";
 import {deleteWindmill} from "../../redux/actions/windmillActions";
 import {connect} from "react-redux";
 import '../../css/table.css'
+import {setActiveWindmill} from "../../redux/actions/windmillTempAction";
 
 class WindmillItem extends Component {
     constructor(props) {
@@ -13,6 +14,13 @@ class WindmillItem extends Component {
         this.state = {
             opened: false,
             clicked: false
+        }
+    }
+
+    componentDidMount() {
+        if(+this.props.activeWindmill === +this.props.windmill.id) {
+            console.log(this.props.activeWindmill, this.props.windmill.id)
+            this.setState({opened: true})
         }
     }
 
@@ -34,7 +42,6 @@ class WindmillItem extends Component {
     }
 
     render() {
-        console.log(this.props.deleteWindmill)
         let { windmill, mode } = this.props
         return (
             <React.Fragment>
@@ -72,10 +79,16 @@ class WindmillItem extends Component {
     }
 }
 
+const mapStateToProps = (state) => {
+    return {
+        activeWindmill: state.windmillTempReducer.activeWindmill
+    }
+}
+
 const mapDispatchToProps = (dispatch) => {
     return {
         delete: bindActionCreators(deleteWindmill, dispatch)
     }
 }
 
-export default connect(null, mapDispatchToProps)(WindmillItem);
+export default connect(mapStateToProps, mapDispatchToProps)(WindmillItem);

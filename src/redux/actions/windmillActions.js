@@ -6,6 +6,9 @@ export const WINDMILLS_IS_ERROR = 'WINDMILLS_IS_ERROR';
 export const ALL_WINDMILLS_IS_PENDING = 'ALL_WINDMILLS_IS_PENDING';
 export const ALL_WINDMILLS_IS_SUCCESS = 'ALL_WINDMILLS_IS_SUCCESS';
 export const ALL_WINDMILLS_IS_ERROR = 'ALL_WINDMILLS_IS_ERROR';
+export const WINDMILL_CURRENT_DATA_PENDING = 'WINDMILL_CURRENT_DATA_PENDING';
+export const WINDMILL_CURRENT_DATA_SUCCESS = 'WINDMILL_CURRENT_DATA_SUCCESS';
+export const WINDMILL_CURRENT_DATA_ERROR = 'WINDMILL_CURRENT_DATA_ERROR';
 export const DELETE_WINDMILLS = 'DELETE_WINDMILLS';
 export const ADD_WINDMILLS = 'ADD_WINDMILLS';
 
@@ -78,6 +81,27 @@ export const addWindmills = (windmills) => {
     }
 };
 
+export const setWindmillDataIsPending = () => {
+    return {
+        type: WINDMILL_CURRENT_DATA_PENDING,
+        payload: true
+    };
+};
+
+export const setWindmillDataError = (error) => {
+    return {
+        type: WINDMILL_CURRENT_DATA_ERROR,
+        payload: error
+    };
+};
+
+export const setWindmillData = (windmills) => {
+    return {
+        type: WINDMILL_CURRENT_DATA_SUCCESS,
+        payload: windmills
+    }
+};
+
 export const getWindmillsByUser = () => {
     return (dispatch) => {
         dispatch(setWindmillsPending());
@@ -104,6 +128,21 @@ export const getAllWindmills = () => {
             .catch(err => {
                 console.log(err);
                 dispatch(setAllWindmillsError(err));
+            });
+    };
+};
+
+export const getWindmillData = () => {
+    return (dispatch) => {
+        dispatch(setWindmillDataIsPending());
+        api.getCurrentWindmillData()
+            .then(success => {
+                console.log(success)
+                dispatch(setWindmillData(success));
+            })
+            .catch(err => {
+                console.log(err);
+                dispatch(setWindmillDataError(err));
             });
     };
 };

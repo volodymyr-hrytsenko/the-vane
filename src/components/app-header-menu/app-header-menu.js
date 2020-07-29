@@ -27,7 +27,6 @@ class AppHeaderMenu extends Component {
             </>) :
             (<>
                 <Link className={'link m15'} to={'/login'}>Вхід</Link>
-                <Link className={'link m15'} to={'/registration'}>Реєстрація</Link>
             </>)
     }
 

@@ -1,7 +1,12 @@
-import {ADD_WINDMILL_TO_TEMP, CLEAR_TEMP, DELETE_WINDMILL_FROM_TEMP} from "../actions/windmillTempAction";
+import {ADD_WINDMILL_TO_TEMP,
+        CLEAR_TEMP,
+        DELETE_WINDMILL_FROM_TEMP,
+        SET_ACTIVE_WINDMILL
+} from "../actions/windmillTempAction";
 
 const initialState = {
-    temporaryWindmills: []
+    temporaryWindmills: [],
+    activeWindmill: null
 };
 
 export const windmillTempReducer = (state=initialState, action) => {
@@ -15,6 +20,11 @@ export const windmillTempReducer = (state=initialState, action) => {
             return {
                 ...state,
                 temporaryWindmills: state.temporaryWindmills.filter(windmill => windmill.id !== action.payload)
+            }
+        case SET_ACTIVE_WINDMILL:
+            return {
+                ...state,
+                activeWindmill: action.payload
             }
         case CLEAR_TEMP:
             return initialState
