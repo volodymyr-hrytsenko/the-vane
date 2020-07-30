@@ -34,7 +34,11 @@ class AppHeaderMenu extends Component {
         return (
             <Router>
                 <div className="header__menu">
-                    <Link to={'/home'}><AppHeaderLogo/></Link>
+                    <Link className={'logo-link'}
+                          to={'/home'}
+                    >
+                        <AppHeaderLogo/>
+                    </Link>
                     <div className={'links'}>
                         <Link className={'link m15'} to={'/home'}>Головна</Link>
                         <Link className={'link m15'} to={'/home'}>Послуги</Link>

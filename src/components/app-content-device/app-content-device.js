@@ -29,7 +29,7 @@ class AppContentDevice extends Component {
                     <th>Назва</th>
                     <th>Заряд аккамулятора</th>
                     <th>Дата Оновлення</th>
-                    <th></th>
+                    <th/>
                 </tr>
                 </thead>
 

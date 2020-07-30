@@ -8,11 +8,9 @@ class AppContentCard extends Component {
 
     render() {
         return (
-            <div className={'content-card'}>
+            <div className={`content-card ${this.props.color}`}>
                 <div>
-                    <img className={'card-img'}
-                         src={'https://cdn.mos.cms.futurecdn.net/ntFmJUZ8tw3ULD3tkBaAtf.jpg'}
-                    />
+                    {this.props.icon}
                 </div>
                 <div className={'card-content'}>
                     <span className={'card-title'}>{this.props.title}:</span>
