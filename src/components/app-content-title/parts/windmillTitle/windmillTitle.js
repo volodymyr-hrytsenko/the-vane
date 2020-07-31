@@ -65,7 +65,6 @@ class WindmillTitle extends Component {
                         </FormButton>
                     </div>
                 </ModalWindow>)}
-
             </React.Fragment>
         );
     }

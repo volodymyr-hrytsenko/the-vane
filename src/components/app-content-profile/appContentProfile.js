@@ -51,7 +51,7 @@ class AppContentProfile extends Component {
                         />
                     </div>
                     <UserInfo fields={["Ім'я", "Прізвище", "Адреса електронної пошти"]}
-                              infos={[user.name, user.surname, user.email]}
+                              infos={{name: user.name, surname: user.surname, email: user.email}}
                     />
                 </>
             );

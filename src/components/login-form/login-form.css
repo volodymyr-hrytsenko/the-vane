@@ -27,3 +27,22 @@
 .box-login__input {
      background-color: #9A9AA8;
  }
+
+.mgt7 {
+    margin-top: 7px;
+}
+
+.google-icon {
+    margin-left: 5px;
+}
+
+.text-dec-none {
+    text-decoration: none;
+}
+
+.flex {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}

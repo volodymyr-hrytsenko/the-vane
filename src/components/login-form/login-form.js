@@ -20,6 +20,10 @@ class LoginForm extends Component {
         };
     }
 
+    redirect = () => {
+        window.location.replace('https://the-vane.herokuapp.com/auth/google')
+    }
+
     onSubmit = (e) => {
         e.preventDefault();
         this.props.login(this.state)
@@ -69,14 +73,17 @@ class LoginForm extends Component {
                                 <FormButton className={'btn confirm'} type={'submit'}>
                                     Submit
                                 </FormButton>
-                                <a href={'https://the-vane.herokuapp.com/auth/google'}>
+                                <FormButton className={'btn cancel mgt7'} onClick={this.redirect}>
                                     Login with Google
-                                </a>
-                                <a href={'https://the-vane.herokuapp.com/auth/google'}>
-                                    відновити пароль
-                                </a>
+                                    <i className="google-icon fa fa-google"/>
+                                </FormButton>
+                                <div className={'flex'}>
+                                    <RedirectLink link={'/registration'}>До реєстрайції</RedirectLink>
+                                    <a className={'redirect-link text-dec-none'} href={'https://the-vane.herokuapp.com/auth/google'}>
+                                        Відновити пароль
+                                    </a>
+                                </div>
                             </form>
-                            <RedirectLink link={'/registration'}>До реєстрайції</RedirectLink>
                             <CircleLoader
                                 css={'left: 50%; transform: translateX(-50%);'}
                                 size={60}
