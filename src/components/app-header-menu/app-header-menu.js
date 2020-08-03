@@ -22,7 +22,7 @@ class AppHeaderMenu extends Component {
     defineLinks() {
         return this.props.isLoggedIn ?
             (<>
-                <Link className={'link m15'} to={'user/profile'}>Мій профіль</Link>
+                <Link className={'link m15'} to={`/user/main`}>Мій профіль</Link>
                 <span className={'link m15'} onClick={this.clickHandler}>Вийти</span>
             </>) :
             (<>
