@@ -2,6 +2,7 @@
 
 # dependencies
 /pictures
+/fonts
 /node_modules
 /.pnp
 .pnp.js
