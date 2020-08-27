@@ -29,20 +29,20 @@ class AppNavbar extends Component {
     }
 
     render() {
-        let { user } = this.props
+        let { user, type } = this.props
         let { path, url } = this.props.match
         return (
             <React.Fragment>
                 <ul ref={this.navbarRef} className="navbar" onTransitionEnd={this.transitionHandler}>
-                    <li className={'nav-item'}>
+                    <li className={`nav-item ${type === 'main' ? 'active' : ''}`}>
                         <Link className={'nav-item-link'} to={`${url}/main`}>
-                            <AppNavbarItem ico={'fa fa-user-circle'}
+                            <AppNavbarItem ico={'fa fa-home'}
                                            label={'Головна'}
                                            state={this.state.opened}
                             />
                         </Link>
                     </li>
-                    <li className={'nav-item'}>
+                    <li className={`nav-item ${type === 'profile' ? 'active' : ''}`}>
                         <Link className={'nav-item-link'} to={`${url}/profile`}>
                             <AppNavbarItem ico={'fa fa-user-circle'}
                                            label={'Ваш профіль'}
@@ -51,7 +51,7 @@ class AppNavbar extends Component {
                         </Link>
                     </li>
                     {user.account?.permission === 3 && (<>
-                        <li className={'nav-item'}>
+                        <li className={`nav-item ${type === 'devices' ? 'active' : ''}`}>
                             <Link className={'nav-item-link'} to={`${url}/devices`}>
                                 <AppNavbarItem ico={'fa fa-microchip'}
                                                label={'Ваші пристрої'}
@@ -59,7 +59,7 @@ class AppNavbar extends Component {
                                 />
                             </Link>
                         </li>
-                        <li className={'nav-item'}>
+                        <li className={`nav-item ${type === 'windmill' ? 'active' : ''}`}>
                             <Link className={'nav-item-link'} to={`${url}/windmills`}>
                                 <AppNavbarItem ico={'fa fa-snowflake-o'}
                                                label={'Ваші вітрогенератори'}
@@ -118,7 +118,8 @@ class AppNavbar extends Component {
 
 export const mapStateToProps = (state) => {
     return {
-        user: state.userReducer.user
+        user: state.userReducer.user,
+        type: state.titleReducer.titleType
     }
 }
 

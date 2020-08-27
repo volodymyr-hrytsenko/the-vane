@@ -7,7 +7,7 @@ import {connect} from "react-redux";
 import api from "../../../../service/api";
 import {bindActionCreators} from "redux";
 import {clearTemp} from "../../../../redux/actions/windmillTempAction";
-import {addWindmills} from "../../../../redux/actions/windmillActions";
+import {getWindmillsByUser} from "../../../../redux/actions/windmillActions";
 import {toast} from "react-toastify";
 
 class WindmillTitle extends Component {
@@ -27,7 +27,7 @@ class WindmillTitle extends Component {
         api.addUserWindmill(ids)
             .then(success => {
                 toast("Девайс успішно доданий", {type: "success"})
-                this.props.addWindmills(this.props.temporaryWindmills)
+                this.props.getWindmillsByUser()
                 this.props.clearTemp()
                 this.setState({modalIsOpened: false})
             }).catch(err => {
@@ -65,7 +65,6 @@ class WindmillTitle extends Component {
                         </FormButton>
                     </div>
                 </ModalWindow>)}
-
             </React.Fragment>
         );
     }
@@ -80,7 +79,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         clearTemp: bindActionCreators(clearTemp, dispatch),
-        addWindmills: bindActionCreators(addWindmills, dispatch)
+        getWindmillsByUser: bindActionCreators(getWindmillsByUser, dispatch)
     }
 }
 

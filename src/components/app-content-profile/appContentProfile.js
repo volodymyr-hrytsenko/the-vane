@@ -7,6 +7,10 @@ import {getUserInfo} from "../../redux/actions/userActions";
 import {CircleLoader} from "react-spinners";
 import Notification from "../notification/notification";
 import {setTitleType} from "../../redux/actions/titleActions";
+import AnemometrIcon from "./parts/anemometr/anemometr-icon";
+import WindmillIcon from "./parts/windmill-icon/windmill-icon";
+import UserIcon from "./parts/user-icon/user-icon";
+import UserInfo from "../user-info/user-info";
 
 class AppContentProfile extends Component {
     constructor(props) {
@@ -19,6 +23,7 @@ class AppContentProfile extends Component {
     }
 
     render() {
+        let {user} = this.props
         let { account } = this.props.user
         let comp;
         if(this.props.isPending) {
@@ -27,17 +32,28 @@ class AppContentProfile extends Component {
             comp = <Notification type={'error'}>{this.props.error.message}</Notification>
         } else {
             comp = (
-                <div className={'card_list'}>
-                    <AppContentCard title={"Користувачів"}
-                                    amount={account ? account.user : ''}
+                <>
+                    <div className={'card_list'}>
+                        <AppContentCard title={"Користувачів"}
+                                        amount={account ? account.user : ''}
+                                        icon={<AnemometrIcon/>}
+                                        color={'green'}
+                        />
+                        <AppContentCard title={'Девайсів'}
+                                        amount={account ? account.device : ''}
+                                        icon={<WindmillIcon/>}
+                                        color={'blue'}
+                        />
+                        <AppContentCard title={'Вітряків'}
+                                        amount={account ? account.windmill : ''}
+                                        icon={<UserIcon/>}
+                                        color={'orange'}
+                        />
+                    </div>
+                    <UserInfo fields={["Ім'я", "Прізвище", "Адреса електронної пошти"]}
+                              infos={{name: user.name, surname: user.surname, email: user.email}}
                     />
-                    <AppContentCard title={'Девайсів'}
-                                    amount={account ? account.device : ''}
-                    />
-                    <AppContentCard title={'Вітряків'}
-                                    amount={account ? account.windmill : ''}
-                    />
-                </div>
+                </>
             );
         }
         return comp

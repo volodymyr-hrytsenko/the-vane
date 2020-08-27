@@ -20,6 +20,10 @@ class LoginForm extends Component {
         };
     }
 
+    redirect = () => {
+        window.location.replace('https://the-vane.herokuapp.com/auth/google')
+    }
+
     onSubmit = (e) => {
         e.preventDefault();
         this.props.login(this.state)
@@ -76,7 +80,6 @@ class LoginForm extends Component {
                                     Відновити пароль
                                 </a>
                             </form>
-                            <RedirectLink link={'/registration'}>До реєстрайції</RedirectLink>
                             <CircleLoader
                                 css={'left: 50%; transform: translateX(-50%);'}
                                 size={60}

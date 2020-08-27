@@ -5,3 +5,7 @@
     flex-wrap: wrap;
     justify-content: space-around;
 }
+
+.user-info-section {
+    margin-top: 56px;
+}

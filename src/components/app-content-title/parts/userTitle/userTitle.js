@@ -8,8 +8,7 @@ class UserTitle extends Component {
         if(isEmpty(user)) return null
         return (
              <React.Fragment>
-                <span className={'title'}>{ `${user.name} ${user.surname}` }</span>
-                <span className={'title'}>{ `${user.email}` }</span>
+                <span className={'title'}>Мій профіль</span>
             </React.Fragment>
         )
     }
