@@ -33,7 +33,8 @@ class AppHeaderMenu extends Component {
     render() {
         return (
             <Router>
-                <div className="header__menu box">
+                <div className="header__menu">
+                    {/* box */}
                     <Link className={'logo-link'}
                           to={'/home'}
                     >
