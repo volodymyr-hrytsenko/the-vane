@@ -31,9 +31,11 @@ class AppHeaderMenu extends Component {
     }
 
     render() {
+        let {title} = this.props
+        console.log(title === 'main-page' ? 'absolute' : 'relative')
         return (
             <Router>
-                <div className="header__menu">
+                <div className="header__menu" style={{position: title === 'main-page' ? 'absolute' : 'relative'}}>
                     {/* box */}
                     <Link className={'logo-link'}
                           to={'/home'}
@@ -76,7 +78,8 @@ class AppHeaderMenu extends Component {
 const mapStateToProps = (state) => {
     return {
         isLoggedIn: state.userReducer.isLoggedIn,
-        user: state.userReducer.user
+        user: state.userReducer.user,
+        title: state.titleReducer.titleType
     }
 }
 

@@ -5,17 +5,21 @@ import WindmillTitle from "./parts/windmillTitle";
 import {connect} from "react-redux";
 import DeviceTitle from "./parts/deviceTitle/deviceTitle";
 import MainTitle from "./parts/MainTitle/mainTitle";
+import DiagramTitle from "./parts/diagramTitle/diagramTitle";
 
 class AppContentTitle extends Component {
     defineContent() {
-        if(this.props.type === 'profile') {
-            return (<UserTitle/>)
-        } else if(this.props.type === 'windmill') {
-            return (<WindmillTitle/>)
-        } else if(this.props.type === 'main') {
-            return (<MainTitle/>)
-        } else {
-            return (<DeviceTitle/>)
+        switch(this.props.type) {
+            case 'profile':
+                return (<UserTitle/>);
+            case 'windmill':
+                return (<WindmillTitle/>);
+            case 'main':
+                return (<MainTitle/>);
+            case 'devices':
+                return (<DeviceTitle/>)
+            case 'diagram':
+                return (<DiagramTitle/>)
         }
     }
 

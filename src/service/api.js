@@ -171,6 +171,21 @@ class API {
         if(response.status >= 400 && response.status <= 600) throw Error(parsedJson.message);
         return await parsedJson
     }
+
+    async getDiagramsData() {
+        const token = sessionStorage.getItem("token")
+        if(!token) return
+        const response = await fetch(`${this.url}/user/windmills/data/5`, {
+            method: 'POST',
+            headers: {
+                'X-AUTH-TOKEN': token,
+                'Content-Type': 'application/json',
+            },
+        })
+        const parsedJson = await response.json()
+        if(response.status >= 400 && response.status <= 600) throw Error(parsedJson.message);
+        return await parsedJson
+    }
 }
 
 const api = new API()

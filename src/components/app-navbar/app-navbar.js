@@ -10,6 +10,7 @@ import { connect } from "react-redux";
 import './app-navbar.css';
 import AppContentDevice from "../app-content-device/app-content-device";
 import AppContentMain from "../app-content-main/appContentMain";
+import AppContentDiagram from "../app-content-diagram/app-content-diagram";
 
 class AppNavbar extends Component {
     constructor(props) {
@@ -67,6 +68,14 @@ class AppNavbar extends Component {
                                 />
                             </Link>
                         </li>
+                        <li className={`nav-item ${type === 'diagram' ? 'active' : ''}`}>
+                            <Link className={'nav-item-link'} to={`${url}/diagram`}>
+                                <AppNavbarItem ico={'fa fa-snowflake-o'}
+                                               label={'Діаграми'}
+                                               state={this.state.opened}
+                                />
+                            </Link>
+                        </li>
                     </>)}
                     <li className={'nav-item'}>
                         <i className={`fa fa-chevron-left nav-icon ${!this.state.opened ? 'rotated' : ''}`}
@@ -108,6 +117,15 @@ class AppNavbar extends Component {
                     >
                         <AppContent>
                             <AppContentMain/>
+                        </AppContent>
+                    </ProtectedRoute>
+                    <ProtectedRoute
+                        condition={user.account?.permission === 3}
+                        path={`${path}/diagram`}
+                        to={'/home'}
+                    >
+                        <AppContent>
+                            <AppContentDiagram/>
                         </AppContent>
                     </ProtectedRoute>
                 </Switch>

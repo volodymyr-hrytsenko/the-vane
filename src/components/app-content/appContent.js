@@ -10,7 +10,7 @@ class AppContent extends Component {
     render() {
 
         return (
-            <div className={"content"}>
+            <div className={"app-content"}>
                 <AppContentTitle/>
                 {this.props.children}
             </div>

@@ -8,7 +8,6 @@ import FormButton from "../form-button/form-button";
 import Notification from "../notification/notification";
 import {Redirect} from "react-router";
 import './login-form.css'
-import RedirectLink from "../redirect-link/redirect-link";
 
 class LoginForm extends Component {
 

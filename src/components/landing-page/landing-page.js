@@ -1,47 +1,43 @@
-import React from 'react';
-
+import React, {Component} from 'react';
 import './landing-page.css';
+import {bindActionCreators} from "redux";
+import {setTitleType} from "../../redux/actions/titleActions";
+import {connect} from "react-redux";
 
-const LandingPage = () => {
-    return(
-        // <div className="landing__page">
-        //     <div className="scrol__wrap">
-        //         <div className="get__part">
-        //             <button>Приєднатися до нас</button>
-        //         </div>
-        //         <div className="services">
-        //             <label>Послуги</label>
-        //             <p>Тут ви можете ознайомитись з переліком наших послуг</p>
-        //             <div className="service__item">
-        //                 <div className="service__item__text">
-        //                     <label>Девайс</label>
-        //                     <p>Короткий привабливий опис послуги</p>
-        //                 </div>
-        //                     <button>Замовити</button>
-        //             </div>
-        //         </div>
-        //     </div>
-        // </div>
-        <main class="landing__page">
-            <div class="advertising">
-                <div class="adver_text">
-                <label>Find <span>your</span> wind</label>
-                <div class="wrapper">
-                    <p>this system will <span>help</span> you to choose the optimal size windmills for your area</p>
-                    <p>Our platform is capable of <span>saving</span> your time and <span>money</span></p>
-                    <p>The best wind monitoring</p>
+class LandingPage extends Component {
+    componentDidMount() {
+        this.props.setTitleType('main-page')
+    }
+
+    render() {
+        return (
+            <main className="landing__page">
+                <div className="advertising">
+                    <div className="adver_text">
+                        <label>Find <span>your</span> wind</label>
+                        <div className="wrapper">
+                            <p>this system will <span>help</span> you to choose the optimal size windmills for your area</p>
+                            <p>Our platform is capable of <span>saving</span> your time and <span>money</span></p>
+                            <p>The best wind monitoring</p>
+                        </div>
+                        <div className="join__button">
+                            <a className="btnflip" href="#">
+                                <span className="btnflip-item btnflip__front">Приєднатися</span>
+                                <span className="btnflip-item btnflip__center"/>
+                                <span className="btnflip-item btnflip__back">Натисніть тут</span>
+                            </a>
+                        </div>
+                    </div>
                 </div>
-                <div className="join__button">
-                    <a class="btnflip" href="#!">
-                        <span class="btnflip-item btnflip__front">Приєднатися</span>
-                        <span class="btnflip-item btnflip__center"></span>
-                        <span class="btnflip-item btnflip__back">Натисніть тут</span>
-                    </a>
-                </div>
-                </div>
-            </div>
-        </main>
-    );
+            </main>
+        );
+    }
 }
 
-export default LandingPage;
+const mapDispatchToProps = (dispatch) => {
+    return {
+        setTitleType: bindActionCreators(setTitleType, dispatch)
+    }
+}
+
+export default connect(null, mapDispatchToProps)(LandingPage);

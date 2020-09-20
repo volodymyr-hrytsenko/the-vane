@@ -5,6 +5,7 @@ import {titleReducer} from "./titleReducers";
 import {registrationReducer} from "./registrationReducer";
 import {windmillTempReducer} from "./windmillTempReducer";
 import {devicesReducer} from "./deviceReducers";
+import {diagramsReducer} from "./diagramsReducer";
 
 const rootReducer = combineReducers({
     userReducer,
@@ -12,7 +13,8 @@ const rootReducer = combineReducers({
     titleReducer,
     registrationReducer,
     windmillTempReducer,
-    devicesReducer
+    devicesReducer,
+    diagramsReducer
 })
 
 export default rootReducer;

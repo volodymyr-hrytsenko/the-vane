@@ -35,14 +35,14 @@ class AppContentWindmills extends Component {
             comp =(<table className={'windmills-list'}>
                 <thead>
                 <tr>
-                    { this.props.mode === 'add' && <th></th>}
+                    { this.props.mode === 'add' && <th/>}
                     <th>Назва</th>
                     <th>Кількість лез</th>
                     <th>Довжина лез</th>
                     <th>Початкова швидкість</th>
                     <th>Номінальна швидкість</th>
                     <th>Номінальна напруга</th>
-                    { this.props.mode === 'view' && <th></th>}
+                    { this.props.mode === 'view' && <th/>}
                 </tr>
                 </thead>
 
