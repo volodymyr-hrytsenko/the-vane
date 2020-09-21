@@ -62,7 +62,7 @@ class AppNavbar extends Component {
                         </li>
                         <li className={`nav-item ${type === 'windmill' ? 'active' : ''}`}>
                             <Link className={'nav-item-link'} to={`${url}/windmills`}>
-                                <AppNavbarItem ico={'fa fa-snowflake-o'}
+                                <AppNavbarItem ico={'fa fa-bolt'}
                                                label={'Вітрогенератори'}
                                                state={this.state.opened}
                                 />
@@ -70,7 +70,7 @@ class AppNavbar extends Component {
                         </li>
                         <li className={`nav-item ${type === 'diagram' ? 'active' : ''}`}>
                             <Link className={'nav-item-link'} to={`${url}/diagram`}>
-                                <AppNavbarItem ico={'fa fa-snowflake-o'}
+                                <AppNavbarItem ico={'fa fa-line-chart'}
                                                label={'Діаграми'}
                                                state={this.state.opened}
                                 />
