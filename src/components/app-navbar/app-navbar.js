@@ -46,7 +46,7 @@ class AppNavbar extends Component {
                     <li className={`nav-item ${type === 'profile' ? 'active' : ''}`}>
                         <Link className={'nav-item-link'} to={`${url}/profile`}>
                             <AppNavbarItem ico={'fa fa-user-circle'}
-                                           label={'Ваш профіль'}
+                                           label={'Профіль'}
                                            state={this.state.opened}
                             />
                         </Link>
@@ -55,7 +55,7 @@ class AppNavbar extends Component {
                         <li className={`nav-item ${type === 'devices' ? 'active' : ''}`}>
                             <Link className={'nav-item-link'} to={`${url}/devices`}>
                                 <AppNavbarItem ico={'fa fa-microchip'}
-                                               label={'Ваші пристрої'}
+                                               label={'Пристрої'}
                                                state={this.state.opened}
                                 />
                             </Link>
@@ -63,7 +63,7 @@ class AppNavbar extends Component {
                         <li className={`nav-item ${type === 'windmill' ? 'active' : ''}`}>
                             <Link className={'nav-item-link'} to={`${url}/windmills`}>
                                 <AppNavbarItem ico={'fa fa-snowflake-o'}
-                                               label={'Ваші вітрогенератори'}
+                                               label={'Вітрогенератори'}
                                                state={this.state.opened}
                                 />
                             </Link>
