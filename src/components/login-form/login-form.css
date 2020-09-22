@@ -46,3 +46,13 @@
     justify-content: space-between;
     align-items: center;
 }
+
+.redirect-link {
+    color: #9a9aa8;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.redirect-link:hover {
+      color: #A190A7;
+}

@@ -1,14 +1,10 @@
 import React, {Component} from 'react';
-import {LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ReferenceDot} from "recharts";
+import {LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip} from "recharts";
 
 class Graph extends Component {
-    componentDidMount() {
-        console.log(this.props)
-    }
-
     render() {
         return (
-            <LineChart width={800}
+            <LineChart width={1200}
                        height={500}
                        data={this.props.data}
                        margin={{top: 15, right: 5, left: 20, bottom: 15}}

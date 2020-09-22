@@ -31,10 +31,10 @@ export const getDiagramsDataError = (error) => {
     };
 };
 
-export const getDiagramsData = () => {
+export const getDiagramsData = (num) => {
     return (dispatch) => {
         dispatch(getDiagramsDataPending());
-        api.getDiagramsData()
+        api.getDiagramsData(num)
             .then((success) => {
                 dispatch(getDiagramsDataSuccess(success));
             })

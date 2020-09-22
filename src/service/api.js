@@ -172,10 +172,10 @@ class API {
         return await parsedJson
     }
 
-    async getDiagramsData() {
+    async getDiagramsData(amount) {
         const token = sessionStorage.getItem("token")
         if(!token) return
-        const response = await fetch(`${this.url}/user/windmills/data/5`, {
+        const response = await fetch(`${this.url}/user/windmills/data/${amount}`, {
             method: 'POST',
             headers: {
                 'X-AUTH-TOKEN': token,

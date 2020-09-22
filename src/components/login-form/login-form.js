@@ -38,7 +38,7 @@ class LoginForm extends Component {
         return (
             <div className='login'>
                 {this.props.isLoggedIn && <Redirect to={'user/profile'}/>}
-                <div className='wrapper'>
+                <div className='login-wrapper'>
                     <div className='block-login card'>
                         <div className='login-form-wrapper'>
                             <h1 className={'login-header'}>Вхід</h1>
@@ -72,10 +72,10 @@ class LoginForm extends Component {
                                 <FormButton className={'btn confirm'} type={'submit'}>
                                     Submit
                                 </FormButton>
-                                <a href={'https://the-vane.herokuapp.com/login/google'}>
+                                <a className={'redirect-link'} href={'https://the-vane.herokuapp.com/login/google'}>
                                     Login with Google
                                 </a>
-                                <a href={''}>
+                                <a className={'redirect-link'} href={''}>
                                     Відновити пароль
                                 </a>
                             </form>

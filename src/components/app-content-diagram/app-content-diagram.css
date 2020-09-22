@@ -1,0 +1,48 @@
+.diagram-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.diagram-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.select-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    width: 100%;
+}
+
+.diagram-select {
+    width: 100%;
+}
+
+.info-amount {
+    outline: none;
+    font-size: 12pt;
+    padding: 3px 5px;
+    margin: 0 5px;
+    border-radius: 3px;
+    background-color: #8884d8;
+    border: 1px #8884d8 solid;
+    color: white;
+    transition: .2s ease;
+}
+
+.graph-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.active-btn {
+    background-color: white;
+    color: black;
+}
