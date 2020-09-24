@@ -1,25 +1,27 @@
 import React, {Component} from 'react';
-import {LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip} from "recharts";
+import {LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer} from "recharts";
 
 class Graph extends Component {
     render() {
         return (
-            <LineChart width={1200}
-                       height={500}
-                       data={this.props.data}
-                       margin={{top: 15, right: 5, left: 20, bottom: 15}}
-            >
-                <CartesianGrid strokeDasharray={'3 3'}/>
-                <XAxis dataKey={'date'}/>
-                <YAxis/>
-                <Tooltip/>
-                <Line type={'monotone'}
-                      dataKey={'power'}
-                      stroke="#8884d8"
-                      activeDot={{r: 8}}
-                      dot={true}
-                />
-            </LineChart>
+            <ResponsiveContainer>
+                <LineChart width={1200}
+                           height={500}
+                           data={this.props.data}
+                           margin={{top: 15, right: 5, left: 20, bottom: 15}}
+                >
+                    <CartesianGrid strokeDasharray={'3 3'}/>
+                    <XAxis dataKey={'date'}/>
+                    <YAxis/>
+                    <Tooltip/>
+                    <Line type={'monotone'}
+                          dataKey={'power'}
+                          stroke="#8884d8"
+                          activeDot={{r: 8}}
+                          dot={true}
+                    />
+                </LineChart>
+            </ResponsiveContainer>
         );
     }
 }

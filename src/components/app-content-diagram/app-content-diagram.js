@@ -11,7 +11,7 @@ import moment from "moment";
 class AppContentDiagram extends Component {
     constructor(props) {
         super(props);
-        this.amounts = [3, 5, 10, 15]
+        this.amounts = [3, 5, 10]
         this.state = {
             windmills: {},
             windmillData: '[]',
