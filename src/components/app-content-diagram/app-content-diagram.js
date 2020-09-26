@@ -7,6 +7,9 @@ import {getUserDevices} from "../../redux/actions/deviceActions";
 import Graph from "../graph/Graph";
 import './app-content-diagram.css'
 import moment from "moment";
+import {CircleLoader} from "react-spinners";
+import Notification from "../notification/notification";
+import MainItem from "../main-item/mainItem";
 
 class AppContentDiagram extends Component {
     constructor(props) {
@@ -31,14 +34,15 @@ class AppContentDiagram extends Component {
         this.setState({
             windmills: this.props.diagramsData[e.target.value]?.windmills || {},
             deviceValue: e.target.value,
-            windmillValue: ''
+            windmillValue: '',
+            windmillData: '[]'
         })
     }
 
     windmillSelect = (e) => {
         this.setState({
             windmillData: e.target.value,
-            windmillValue: ''
+            windmillValue: e.target.value
         })
     }
 
@@ -60,65 +64,73 @@ class AppContentDiagram extends Component {
     }
 
     render() {
-        return (
-            <div className={'diagram-wrapper'}>
-                <form className={'diagram-form'}>
-                    <div className={'select-wrapper'}>
-                        <label className={"diagram-label"}
-                               htmlFor={'device'}
-                        >
-                            Оберіть девайс
-                        </label>
-                        <select value={this.state.deviceValue}
-                                className={'diagram-select'}
-                                name={'device'}
-                                onChange={this.deviceSelect}
-                        >
-                            <option value={{}}/>
-                            {this.props.devices.map(device => {
-                                return (<option key={device.id} value={device.id}>{device.token}</option>)
-                            })}
-                        </select>
-                    </div>
-                    <div className={'select-wrapper'}>
-                        <label className={"diagram-label"}
-                               htmlFor={'windmill'}
-                        >
-                            Оберіть вітряк
-                        </label>
-                        <select value={this.state.windmillData}
-                                className={'diagram-select'}
-                                name={'windmill'}
-                                onChange={this.windmillSelect}
-                        >
-                            <option value={'[]'}/>
-                            {Object.values(this.state.windmills).map((windmill, ind) => {
-                                return (
-                                    <option key={ind}
-                                            value={JSON.stringify(windmill)}
-                                    >
-                                        {ind}
-                                    </option>
-                                )
-                            })}
-                        </select>
-                    </div>
-                </form>
-                <div className={'graph-wrapper'}>
-                    <Graph data={this.formateData()}/>
-                    <div className={'buttons'}>
-                        {this.amounts.map(amount => {
-                            return (<button
-                                className={`info-amount ${this.state.infoAmount === amount ? 'active-btn' : ''}`}
-                                onClick={() => this.buttonHandler(amount)}
+        let comp;
+        if(this.props.isPending) {
+            comp = <CircleLoader css={'left: 50%; transform: translateX(-50%); margin-top: 15px'} size={'120px'}/>
+        } else if(this.props.error) {
+            comp = <Notification type={'error'}>{this.props.error.message}</Notification>
+        } else {
+            comp = (
+                <div className={'diagram-wrapper'}>
+                    <form className={'diagram-form'}>
+                        <div className={'select-wrapper'}>
+                            <label className={"diagram-label"}
+                                   htmlFor={'device'}
                             >
-                                {amount}
-                            </button>)
-                        })}
+                                Оберіть девайс
+                            </label>
+                            <select value={this.state.deviceValue}
+                                    className={'diagram-select'}
+                                    name={'device'}
+                                    onChange={this.deviceSelect}
+                            >
+                                <option value={{}}/>
+                                {this.props.devices.map(device => {
+                                    return (<option key={device.id} value={device.id}>{device.token}</option>)
+                                })}
+                            </select>
+                        </div>
+                        <div className={'select-wrapper'}>
+                            <label className={"diagram-label"}
+                                   htmlFor={'windmill'}
+                            >
+                                Оберіть вітряк
+                            </label>
+                            <select value={this.state.windmillValue}
+                                    className={'diagram-select'}
+                                    name={'windmill'}
+                                    onChange={this.windmillSelect}
+                            >
+                                <option value={''}/>
+                                {Object.values(this.state.windmills).map((windmill, ind) => {
+                                    return (
+                                        <option key={ind}
+                                                value={JSON.stringify(windmill)}
+                                        >
+                                            {ind}
+                                        </option>
+                                    )
+                                })}
+                            </select>
+                        </div>
+                    </form>
+                    <div className={'graph-wrapper'}>
+                        <Graph data={this.formateData()}/>
+                        <div className={'buttons'}>
+                            {this.amounts.map(amount => {
+                                return (<button
+                                    className={`info-amount ${this.state.infoAmount === amount ? 'active-btn' : ''}`}
+                                    onClick={() => this.buttonHandler(amount)}
+                                >
+                                    {amount}
+                                </button>)
+                            })}
+                        </div>
                     </div>
                 </div>
-            </div>
-        );
+            );
+        }
+        return comp
     }
 }
 

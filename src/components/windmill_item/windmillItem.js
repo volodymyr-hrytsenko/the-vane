@@ -45,7 +45,7 @@ class WindmillItem extends Component {
         let { windmill, mode } = this.props
         return (
             <React.Fragment>
-                <tr onClick={mode !== 'add' ? this.clickHandler : null}>
+                <tr className={'windmill-tr'} onClick={mode !== 'add' ? this.clickHandler : null}>
                     {mode === 'add' &&
                     <td className={'checkbox'}>
                         <FormCheckbox windmill={this.props.windmill} />

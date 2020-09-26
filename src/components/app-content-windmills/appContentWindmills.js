@@ -4,10 +4,11 @@ import {connect} from "react-redux";
 import {getAllWindmills, getWindmillsByUser} from "../../redux/actions/windmillActions";
 import WindmillItem from "../windmill_item/windmillItem";
 import {CircleLoader} from "react-spinners";
-import '../../css/table.css'
 import Notification from "../notification/notification";
 import {setTitleType} from "../../redux/actions/titleActions";
 import {setActiveWindmill} from "../../redux/actions/windmillTempAction";
+import './appContentWindmills.css'
+import '../../css/table.css'
 
 class AppContentWindmills extends Component {
     componentDidMount() {

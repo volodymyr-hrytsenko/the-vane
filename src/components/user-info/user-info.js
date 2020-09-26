@@ -18,26 +18,26 @@ class UserInfo extends Component {
     }
 
     render() {
-        console.log(this.state)
+        console.log(this.state, 'userInfo')
         let {infos, fields} = this.props
         return (
             <div className={'user-info'}>
                 <div className={'field-wrapper'}>
                     {fields.map((field) => {
-                        return (<span className={'field right'}>{field}</span>)
+                        return (<span key={field} className={'field right'}>{field}</span>)
                     })}
                 </div>
                 <div className={'divider'} />
                 <div className={'field-wrapper'}>
                     {Object.entries(infos).map((info) => {
                         return this.state.editing ?
-                            (<input
+                            (<input key={info[0]}
                                 className={'user-info-input field left'}
                                 value={this.state[info[0]]}
                                 name={info[0]}
                                 onChange={this.changeHandle}
                             />) :
-                            (<span
+                            (<span key={info[0]}
                                 className={'field left'}
                             >
                                 {info[1]}

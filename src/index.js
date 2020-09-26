@@ -11,7 +11,7 @@ import {logger} from "redux-logger";
 import './index.css';
 import "react-toastify/dist/ReactToastify.css"
 
-const store = createStore(rootReducer, applyMiddleware(thunk, logger))
+const store = createStore(rootReducer, applyMiddleware(thunk))
 
 render(
     <Provider store={store}>
