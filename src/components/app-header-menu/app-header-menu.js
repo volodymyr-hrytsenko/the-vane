@@ -32,7 +32,6 @@ class AppHeaderMenu extends Component {
 
     render() {
         let {title} = this.props
-        console.log(title === 'main-page' ? 'absolute' : 'relative')
         return (
             <Router>
                 <div className="header__menu" style={{position: title === 'main-page' ? 'absolute' : 'relative'}}>

@@ -67,7 +67,6 @@ export const setAllWindmillsError = (err) => {
 };
 
 export const deleteWindmill = (windmillId) => {
-    console.log(windmillId)
     return {
         type: DELETE_WINDMILLS,
         payload: windmillId
@@ -107,7 +106,6 @@ export const getWindmillsByUser = () => {
         dispatch(setWindmillsPending());
         api.getWindmillsByUser()
             .then(success => {
-                console.log(success)
                 dispatch(setWindmillsSuccess(success));
             })
             .catch(err => {
@@ -122,7 +120,6 @@ export const getAllWindmills = () => {
         dispatch(setAllWindmillsPending());
         api.getAllWindmills()
             .then(success => {
-                console.log(success)
                 dispatch(setAllWindmillsSuccess(success));
             })
             .catch(err => {
@@ -137,7 +134,6 @@ export const getWindmillData = () => {
         dispatch(setWindmillDataIsPending());
         api.getCurrentWindmillData()
             .then(success => {
-                console.log(success)
                 dispatch(setWindmillData(success));
             })
             .catch(err => {

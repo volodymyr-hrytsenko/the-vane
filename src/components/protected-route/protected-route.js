@@ -5,7 +5,6 @@ import { Redirect } from "react-router";
 
 class ProtectedRoute extends Component {
     render() {
-        console.log(this.props)
         return (
             <Route {...this.props}>
                 { this.props.condition && this.props.isLoggedIn

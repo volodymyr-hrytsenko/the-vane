@@ -80,7 +80,6 @@ export const login = (user) => {
         dispatch(setLoginPending());
         api.login(user)
             .then(success => {
-                console.log(success)
                 sessionStorage.setItem('token', success.token)
                 dispatch(setLoginSuccess(success));
             })

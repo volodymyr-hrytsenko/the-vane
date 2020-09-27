@@ -19,7 +19,6 @@ class WindmillItem extends Component {
 
     componentDidMount() {
         if(+this.props.activeWindmill === +this.props.windmill.id) {
-            console.log(this.props.activeWindmill, this.props.windmill.id)
             this.setState({opened: true})
         }
     }

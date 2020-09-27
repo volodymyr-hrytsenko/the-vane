@@ -18,7 +18,6 @@ class UserInfo extends Component {
     }
 
     render() {
-        console.log(this.state, 'userInfo')
         let {infos, fields} = this.props
         return (
             <div className={'user-info'}>

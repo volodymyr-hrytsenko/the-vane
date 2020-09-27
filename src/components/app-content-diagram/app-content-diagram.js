@@ -4,12 +4,12 @@ import {bindActionCreators} from "redux";
 import {setTitleType} from "../../redux/actions/titleActions";
 import {getDiagramsData} from "../../redux/actions/diagramsActions";
 import {getUserDevices} from "../../redux/actions/deviceActions";
-import Graph from "../graph/Graph";
-import './app-content-diagram.css'
+import {getWindmillsByUser} from "../../redux/actions/windmillActions";
 import moment from "moment";
 import {CircleLoader} from "react-spinners";
 import Notification from "../notification/notification";
-import MainItem from "../main-item/mainItem";
+import Graph from "../graph/Graph";
+import './app-content-diagram.css'
 
 class AppContentDiagram extends Component {
     constructor(props) {
@@ -28,6 +28,8 @@ class AppContentDiagram extends Component {
         this.props.setTitleType('diagram')
         this.props.getDiagramsData(this.state.infoAmount)
         this.props.getUserDevices()
+        this.props.getWindmillsByUser()
+        console.log(this.props)
     }
 
     deviceSelect = (e) => {
@@ -102,12 +104,12 @@ class AppContentDiagram extends Component {
                                     onChange={this.windmillSelect}
                             >
                                 <option value={''}/>
-                                {Object.values(this.state.windmills).map((windmill, ind) => {
+                                {Object.entries(this.state.windmills).map((windmillData) => {
                                     return (
-                                        <option key={ind}
-                                                value={JSON.stringify(windmill)}
+                                        <option key={windmillData[0]}
+                                                value={JSON.stringify(windmillData[1])}
                                         >
-                                            {ind}
+                                            {this.props.windmills.filter((windmill) => windmill.id === +windmillData[0])[0].titleUa}
                                         </option>
                                     )
                                 })}
@@ -140,7 +142,8 @@ const mapStateToProps = (state) => {
         diagramsData: state.diagramsReducer.diagramsData,
         devices: state.devicesReducer.devices,
         isPending: state.diagramsReducer.isPending,
-        error: state.diagramsReducer.error
+        error: state.diagramsReducer.error,
+        windmills: state.windmillsReducer.windmills,
     }
 }
 
@@ -148,7 +151,8 @@ const mapDispatchToProps = (dispatch) => {
     return {
         setTitleType: bindActionCreators(setTitleType, dispatch),
         getDiagramsData: bindActionCreators(getDiagramsData, dispatch),
-        getUserDevices: bindActionCreators(getUserDevices, dispatch)
+        getUserDevices: bindActionCreators(getUserDevices, dispatch),
+        getWindmillsByUser: bindActionCreators(getWindmillsByUser, dispatch),
     }
 }
 
