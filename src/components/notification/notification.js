@@ -3,9 +3,6 @@ import {capitalize} from "../../service/utilities";
 import './notification.css'
 
 class Notification extends Component {
-    constructor(props) {
-        super(props);
-    }
     render() {
         return (
             <div className={'notification ' + this.props.type}>

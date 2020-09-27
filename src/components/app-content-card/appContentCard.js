@@ -2,10 +2,6 @@ import React, {Component} from 'react';
 import './appContentCard.css'
 
 class AppContentCard extends Component {
-    constructor(props) {
-        super(props);
-    }
-
     render() {
         return (
             <div className={`content-card ${this.props.color}`}>

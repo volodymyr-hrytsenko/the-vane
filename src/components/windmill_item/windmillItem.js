@@ -6,7 +6,6 @@ import {bindActionCreators} from "redux";
 import {deleteWindmill} from "../../redux/actions/windmillActions";
 import {connect} from "react-redux";
 import '../../css/table.css'
-import {setActiveWindmill} from "../../redux/actions/windmillTempAction";
 
 class WindmillItem extends Component {
     constructor(props) {

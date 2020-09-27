@@ -26,17 +26,16 @@ class AppContentDiagram extends Component {
 
     componentDidMount() {
         this.props.setTitleType('diagram')
-        this.props.getDiagramsData(this.state.infoAmount)
+        this.props.getDiagramsData(10)
         this.props.getUserDevices()
         this.props.getWindmillsByUser()
-        console.log(this.props)
     }
 
     deviceSelect = (e) => {
         this.setState({
             windmills: this.props.diagramsData[e.target.value]?.windmills || {},
             deviceValue: e.target.value,
-            windmillValue: '',
+            windmillValue: '[]',
             windmillData: '[]'
         })
     }
@@ -49,12 +48,8 @@ class AppContentDiagram extends Component {
     }
 
     buttonHandler = (num) => {
-        this.props.getDiagramsData(num)
         this.setState({
             infoAmount: num,
-            deviceValue: '',
-            windmillValue: '',
-            windmillData: '[]'
         })
     }
 
@@ -62,7 +57,7 @@ class AppContentDiagram extends Component {
         let data = JSON.parse(this.state.windmillData)
         return data.map(data => {
             return {power: data.power, date: moment(data.date).format("DD.MM.YYYY")}
-        })
+        }).slice(0, this.state.infoAmount)
     }
 
     render() {
@@ -103,7 +98,7 @@ class AppContentDiagram extends Component {
                                     name={'windmill'}
                                     onChange={this.windmillSelect}
                             >
-                                <option value={''}/>
+                                <option value={'[]'}/>
                                 {Object.entries(this.state.windmills).map((windmillData) => {
                                     return (
                                         <option key={windmillData[0]}
@@ -120,7 +115,7 @@ class AppContentDiagram extends Component {
                         <Graph data={this.formateData()}/>
                         <div className={'buttons'}>
                             {this.amounts.map(amount => {
-                                return (<button
+                                return (<button key={amount}
                                     className={`info-amount ${this.state.infoAmount === amount ? 'active-btn' : ''}`}
                                     onClick={() => this.buttonHandler(amount)}
                                 >

@@ -3,10 +3,6 @@ import AppContentTitle from "../app-content-title/appContentTitle";
 import './appContent.css'
 
 class AppContent extends Component {
-    constructor(props) {
-        super(props);
-    }
-
     render() {
 
         return (
@@ -17,8 +13,5 @@ class AppContent extends Component {
         );
     }
 }
-
-
-
 
 export default AppContent;

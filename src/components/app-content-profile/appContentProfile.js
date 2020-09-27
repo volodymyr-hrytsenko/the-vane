@@ -13,10 +13,6 @@ import UserIcon from "./parts/user-icon/user-icon";
 import UserInfo from "../user-info/user-info";
 
 class AppContentProfile extends Component {
-    constructor(props) {
-        super(props);
-    }
-
     componentDidMount() {
         this.props.setTitleType('profile')
         this.props.getUserInfo()

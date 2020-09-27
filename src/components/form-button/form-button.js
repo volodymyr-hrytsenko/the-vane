@@ -2,9 +2,6 @@ import React, {Component} from 'react';
 import './form-button.css'
 
 class FormButton extends Component {
-    constructor(props) {
-        super(props)
-    }
     render() {
         return (
             <button type={this.props.type}
